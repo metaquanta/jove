@@ -17,7 +17,7 @@ class JME3Application extends SimpleApplication {
   }
 
   override def simpleUpdate(tpf:Float) {
-    screens.foreach(s => s.update())
+    screens.foreach(s => s.update(tpf))
   }
 
   def attachScreen(s:Screen, p:Vector3f) {

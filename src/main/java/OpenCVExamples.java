@@ -12,6 +12,7 @@ import static org.opencv.video.Video.*;
  * Created by matthew on 4/6/14.
  */
 public class OpenCVExamples {
+    // Source: https://gist.github.com/b95505017/6862032
     static int last = 0;
     // number of cyclic frame buffer used for motion detection
     // (should, probably, depend on FPS)
