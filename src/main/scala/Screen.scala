@@ -8,24 +8,31 @@ import scala.concurrent._
 /**
  * Created by matthew on 4/25/14.
  */
-class Screen(src:Input, app:JME3Application) extends Node {
+class Screen(src:PipeElement, app:JME3Application) extends Node {
   var t:Float = 0
   var lastFrameAt:Float = 0
   val mat = new Material(app.getAssetManager(),
     "Common/MatDefs/Misc/Unshaded.j3md")
-  val box = new Geometry("Box", new Box(src.width.toFloat/src.height.toFloat, 1f, 1f))
-  box.setMaterial(mat)
-  attachChild(box)
+  lazy val box = {
+    val width = frameFuture.value.get.get.head.getWidth
+    val height = frameFuture.value.get.get.head.getHeight
+    val b = new Geometry("Box", new Box(width/height, 1f, 1f))
+    b.setMaterial(mat)
+    attachChild(b)
+    b
+  }
 
   var frameFuture = src.getImage()
 
   def update(tpf:Float) {
     t+=tpf
     if(frameFuture.isCompleted) {
-      println("frame time " + (t -lastFrameAt))
+      //println("frame time " + (t -lastFrameAt))
       lastFrameAt = t
-      val ftex:Texture2D = new Texture2D(frameFuture.value.get.get)
+      val f = frameFuture.value.get.get.head
+      val ftex:Texture2D = new Texture2D(frameFuture.value.get.get.head)
       mat.setTexture("ColorMap", ftex)
+      box
       frameFuture = src.getImage
     }
   }

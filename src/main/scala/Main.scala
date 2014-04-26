@@ -15,6 +15,11 @@ object Main extends App {
   }
   jme3app.attachScreen(
     new Screen(
-      new Input(new VideoCapture("/Users/matthew/Desktop/test.mkv")), jme3app),
+      new PipeElement(new VideoCapturePipe("/Users/matthew/Desktop/test.mkv"), List()), jme3app),
     new Vector3f(2,0,0))
+
+  jme3app.attachScreen(
+    new Screen(
+      new PipeElement(new VideoCapturePipe(0), List()), jme3app),
+    new Vector3f(-2,0,0))
 }
