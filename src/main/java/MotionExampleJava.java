@@ -11,20 +11,22 @@ import static org.opencv.video.Video.*;
 /**
  * Created by matthew on 4/6/14.
  */
-public class OpenCVExamples {
+public class MotionExampleJava {
     // Source: https://gist.github.com/b95505017/6862032
-    static int last = 0;
+    int last = 0;
     // number of cyclic frame buffer used for motion detection
     // (should, probably, depend on FPS)
     static final int N = 4;
     static final double MHI_DURATION = 1;
     static final double MAX_TIME_DELTA = 0.5;
     static final double MIN_TIME_DELTA = 0.05;
-    static Mat mhi, orient, mask, segmask;
-    static Mat[] buf;
-    static double magnitude, startTime = 0;
+    Mat mhi, orient, mask, segmask;
+    Mat[] buf;
+    double magnitude, startTime = 0;
     static final int diff_threshold = 30;
-    public static Mat update_mhi(Mat img) {
+    public Mat update_mhi(Mat img) {
+
+        //System.out.println("Processing Frame " + img);
         Size size = new Size(img.width(), img.height());
         if(buf == null) {
             buf = new Mat[N];
@@ -103,7 +105,7 @@ public class OpenCVExamples {
                     Math.round(center.x + magnitude * Math.cos(angle * Math.PI / 180)),
                     Math.round(center.y - magnitude * Math.sin(angle * Math.PI / 180))), color, 3, LINE_AA, 0);
         }
-
+        //System.out.println("Created Frame " + dst);
         return dst;
     }
 }

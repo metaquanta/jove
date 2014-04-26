@@ -4,6 +4,7 @@ import com.jme3.scene.shape.Box
 import com.jme3.scene.{Geometry, Node}
 import com.jme3.texture.Texture2D
 import scala.concurrent._
+import scala.concurrent.duration._
 
 /**
  * Created by matthew on 4/25/14.
@@ -14,6 +15,7 @@ class Screen(src:PipeElement, app:JME3Application) extends Node {
   val mat = new Material(app.getAssetManager(),
     "Common/MatDefs/Misc/Unshaded.j3md")
   lazy val box = {
+    Await.ready(frameFuture, 0 nanos)
     val width = frameFuture.value.get.get.head.getWidth
     val height = frameFuture.value.get.get.head.getHeight
     val b = new Geometry("Box", new Box(width/height, 1f, 1f))
