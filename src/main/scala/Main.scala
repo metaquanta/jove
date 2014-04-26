@@ -15,25 +15,33 @@ object Main extends App {
   }
 
   val video = new PipeElement(new VideoCapturePipe("/Users/matthew/Desktop/test.mkv"), List())
-  jme3app.attachScreen(
-    new Screen(video, 0, jme3app),
-    new Vector3f(3,0,0))
 
   jme3app.attachScreen(
-    new Screen(new PipeElement(new Motion(), List(video)), 0, jme3app),
-    new Vector3f(-3,0,0)
-  )
+    new Screen(video, 0, jme3app),
+    new Vector3f(0,0,0))
+
+//  jme3app.attachScreen(
+//    new Screen(new PipeElement(new Motion(), List(video)), 0, jme3app),
+//    new Vector3f(-3,0,0)
+//  )
 
   val split = new PipeElement(new Split(), List(video))
 
+  val stereo = new PipeElement(new StereoCorrespondence(),List(split))
+
   jme3app.attachScreen(
     new Screen(split, 0, jme3app),
-    new Vector3f(3,-2,0)
+    new Vector3f(-2,0,0)
   )
 
   jme3app.attachScreen(
     new Screen(split, 1, jme3app),
-    new Vector3f(-3,-2,0)
+    new Vector3f(2,0,0)
+  )
+
+  jme3app.attachScreen(
+    new Screen(stereo, 0, jme3app),
+    new Vector3f(0,-2,0)
   )
 
   //  jme3app.attachScreen(

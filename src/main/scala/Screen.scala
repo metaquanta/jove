@@ -1,8 +1,9 @@
 import com.jme3.asset.AssetManager
 import com.jme3.material.Material
-import com.jme3.scene.shape.Box
+import com.jme3.scene.shape.Quad
 import com.jme3.scene.{Geometry, Node}
 import com.jme3.texture.Texture2D
+//import com.jme3.ui.Picture
 import scala.concurrent._
 import scala.concurrent.duration._
 
@@ -18,7 +19,16 @@ class Screen(src:PipeElement, index:Int, app:JME3Application) extends Node {
     Await.ready(frameFuture, 0 nanos)
     val width = frameFuture.value.get.get.head.getWidth
     val height = frameFuture.value.get.get.head.getHeight
-    val b = new Geometry("Box", new Box(width/height, 1f, 1f))
+    println("Screen Dimensions:"+width+","+height)
+    val b = new Geometry("Quad", new Quad(width.toFloat/height.toFloat, 1f))
+    //val b = new Geometry("Quad", new Quad(1f, 1f))
+//    val b = new Picture("s")
+//    //b.setWidth(width/height)
+//    b.setWidth(100)
+//    //b.setHeight(1f)
+//    b.setHeight(100)
+//    b.updateGeometricState()
+//    b.setPosition(0,0)
     b.setMaterial(mat)
     attachChild(b)
     b
