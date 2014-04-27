@@ -34,10 +34,10 @@ object Main extends App {
 //    new Vector3f(-2,0,0)
 //  )
 //
-//  jme3app.attachScreen(
-//    new Screen(split, 1, jme3app),
-//    new Vector3f(2,0,0)
-//  )
+  jme3app.attachScreen(
+    new Screen(split, 1, jme3app),
+    new Vector3f(0,1,0)
+  )
 
   jme3app.attachScreen(
     new Screen(stereo, 0, jme3app),
