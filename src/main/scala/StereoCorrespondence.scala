@@ -8,29 +8,25 @@ import org.opencv.imgproc.Imgproc
 class StereoCorrespondence extends FramePipe {
   val SGBM = new StereoBM()
   def getFrame(ins:List[Mat]):List[Mat] = {
-    //println("Processing Frame: " + ins(0) + "["+ins(0).`type`()+"]")
     val left = new Mat()
     val right = new Mat()
+
+    // OMG! The HORROR that is Mat type conversions...
+    // ...convert to grey scale
     Imgproc.cvtColor(ins(0), left, 7) //CV_RGB2GRAY    =7
     Imgproc.cvtColor(ins(1), right, 7)
 
-    println("input:" + ins(0).`type` +":"+ins(0).channels)
-    //ins(0).convertTo(left, CvType.CV_8UC1)
-    //ins(1).convertTo(right, CvType.CV_8UC1)
-    //println("new types: " + left.channels() + ", "+right.channels() + "["+CvType.CV_8UC1+"]")
+    val depthmap = new Mat()
+    SGBM.compute(left,right,depthmap)
 
-    val toutput = new Mat() //Mat.zeros(ins(1).size(), CvType.CV_8UC1)
-    SGBM.compute(left,right,toutput)
-
-    val t2output = new Mat()
-    toutput.convertTo(t2output, CvType.CV_16U)
-
-
-    val t3output = new Mat()
-    Imgproc.cvtColor(t2output, t3output, 8) // CV_GRAY2BGR    =8
-    val output = new Mat()
-    t3output.convertTo(output, 16)
-    println("output:" + output.`type` +":"+output.channels)
-    List(output)
+    // OMG! The HORROR continues...
+    val t = new Mat()
+    // ...convert to unsigned (from 16S)
+    depthmap.convertTo(t, CvType.CV_16U)
+    // ...convert back to color
+    Imgproc.cvtColor(t, depthmap, 8) // CV_GRAY2BGR    =8
+    // ...convert to who the fuck knows?
+    depthmap.convertTo(t, 16) // 16=???
+    List(t)
   }
 }

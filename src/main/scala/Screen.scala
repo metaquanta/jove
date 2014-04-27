@@ -42,7 +42,7 @@ class Screen(src:PipeElement, index:Int, app:JME3Application) extends Node {
       //println("frame time " + (t -lastFrameAt))
       lastFrameAt = t
       val f = frameFuture.value.get.get(index)
-      val ftex:Texture2D = new Texture2D(frameFuture.value.get.get.head)
+      val ftex:Texture2D = new Texture2D(f)
       mat.setTexture("ColorMap", ftex)
       box
       frameFuture = src.getImage

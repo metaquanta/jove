@@ -8,6 +8,7 @@ class JME3Application extends SimpleApplication {
   start()
 
   var screens = List[Screen]()
+  var dm:DepthMap = null
 
   def simpleInitApp() {
     synchronized {
@@ -23,11 +24,22 @@ class JME3Application extends SimpleApplication {
       }
     })
     screens.foreach(s => s.update(tpf))
+
+    if(dm != null) {
+      if(!rootNode.hasChild(dm)) {
+        rootNode.attachChild(dm)
+      }
+      dm.update(tpf)
+    }
   }
 
   def attachScreen(s:Screen, p:Vector3f) {
     s.setLocalTranslation(p)
     //rootNode.attachChild(s)
     screens = screens:+s
+  }
+
+  def attachDepthMap(d:DepthMap, p:Vector3f) {
+    dm = d
   }
 }
