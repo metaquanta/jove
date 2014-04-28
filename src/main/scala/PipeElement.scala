@@ -19,8 +19,9 @@ class PipeElement(cap:FramePipe, in:List[PipeElement]) {
   // This should only be called when a frame is available
   // All frames should be same size
   lazy val flipdst = {
-    Await.ready(nextFrame, 0 nanos)
-    val f=nextFrame.value.get.get.head
+    val ff = nextFrame
+    Await.ready(ff, 0 nanos)
+    val f=ff.value.get.get.head
     new Mat(f.size(), f.`type`())
   }
 
