@@ -17,7 +17,7 @@ object Main extends App {
 //  val video = new PipeElement(new VideoCapturePipe("/Users/matthew/Desktop/test.mkv"), List())
 //
 ////  jme3app.attachScreen(
-////    new Screen(video, 0, jme3app),
+////    new ScreenVisualizer(video, 0, jme3app),
 ////    new Vector3f(0,0,0))
 //
 //  val split = new PipeElement(new Split(), List(video))
@@ -25,38 +25,38 @@ object Main extends App {
 //  val stereo = new PipeElement(new StereoCorrespondence(),List(split))
 ////
 ////  jme3app.attachScreen(
-////    new Screen(split, 0, jme3app),
+////    new ScreenVisualizer(split, 0, jme3app),
 ////    new Vector3f(-2,0,0)
 ////  )
 ////
 //  jme3app.attachScreen(
-//    new Screen(split, 1, jme3app),
+//    new ScreenVisualizer(split, 1, jme3app),
 //    new Vector3f(0,1,0)
 //  )
 //
 //  jme3app.attachScreen(
-//    new Screen(stereo, 0, jme3app),
+//    new ScreenVisualizer(stereo, 0, jme3app),
 //    new Vector3f(0,2,0)
 //  )
 //
 //  jme3app.attachDepthMap(
-//    new DepthMap(stereo, 0, jme3app),
+//    new DepthMapVisualizer(stereo, 0, jme3app),
 //    new Vector3f(0,0,0)
 //  )
 
   val camera = new PipeElement(new VideoCapturePipe(0), List())
 
   jme3app.attachScreen(
-    new Screen(camera, 0, jme3app),
+    new ScreenVisualizer(camera, 0, jme3app),
     new Vector3f(2,0,0))
 
   jme3app.attachScreen(
-    new Screen(new PipeElement(new Motion(), List(camera)), 0, jme3app),
+    new ScreenVisualizer(new PipeElement(new Motion(), List(camera)), 0, jme3app),
     new Vector3f(-2,0,0)
   )
 
   jme3app.attachScreen(
-    new Screen(new PipeElement(new FaceDetector(), List(camera)), 0, jme3app),
+    new ScreenVisualizer(new PipeElement(new FaceDetector(), List(camera)), 0, jme3app),
     new Vector3f(-4,0,0)
   )
 

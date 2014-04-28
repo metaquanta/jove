@@ -7,28 +7,25 @@ import com.jme3.texture.Texture2D
 import java.util.Random
 import com.jme3.texture.Image
 import scala.concurrent.Await
+import org.jmonkeyengine.hub.ogli.{RawPointCloudGraphGenerator}
+
 
 /**
  * Created by matthew on 4/26/14.
  */
-class DepthMap(src:PipeElement, index:Int, app:JME3Application) extends Node {
-//  val mat = new Material(app.getAssetManager(),
-//    "Common/MatDefs/Misc/Unshaded.j3md")
-
-  var frameFuture = src.getImage()
-
+class DepthMapVisualizer(src:PipeElement, index:Int, app:JME3Application) extends VisualizationNode(src, index) {
   var n:Node = new Node
   attachChild(n)
 
   def update(tpf:Float) {
-    if(frameFuture.isCompleted) {
-      val (points, colors) = generatePoints(frameFuture.value.get.get(0))
+    val f = nextFrame
+    if(f.isDefined) {
+      val (points, colors) = generatePoints(f.get)
       val generator = new RawPointCloudGraphGenerator(app.getAssetManager)
       detachChild(n)
       n = new Node
       n.attachChild(generator.generatePointCloudGraph(points,colors))
       attachChild(n)
-      frameFuture = src.getImage
     }
   }
 

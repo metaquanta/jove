@@ -1,4 +1,4 @@
-
+package org.jmonkeyengine.hub.ogli;
 import java.nio.FloatBuffer;
 
 import com.jme3.asset.AssetManager;

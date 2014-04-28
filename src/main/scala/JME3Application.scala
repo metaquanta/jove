@@ -7,8 +7,8 @@ import com.jme3.math.Vector3f
 class JME3Application extends SimpleApplication {
   start()
 
-  var screens = List[Screen]()
-  var dm:DepthMap = null
+  var screens = List[ScreenVisualizer]()
+  var dm:DepthMapVisualizer = null
 
   def simpleInitApp() {
     synchronized {
@@ -33,13 +33,13 @@ class JME3Application extends SimpleApplication {
     }
   }
 
-  def attachScreen(s:Screen, p:Vector3f) {
+  def attachScreen(s:ScreenVisualizer, p:Vector3f) {
     s.setLocalTranslation(p)
     //rootNode.attachChild(s)
     screens = screens:+s
   }
 
-  def attachDepthMap(d:DepthMap, p:Vector3f) {
+  def attachDepthMap(d:DepthMapVisualizer, p:Vector3f) {
     dm = d
   }
 }
