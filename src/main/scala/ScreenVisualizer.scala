@@ -10,7 +10,9 @@ import scala.concurrent.duration._
 /**
  * Created by matthew on 4/25/14.
  */
-class ScreenVisualizer(src:PipeElement, index:Int, app:JME3Application) extends VisualizationNode(src, index) {
+class ScreenVisualizer(name:String, src:PipeElement, index:Int, app:JME3Application)
+  extends VisualizationNode(name, src, index, app) {
+
   val mat = new Material(app.getAssetManager(),
     "Common/MatDefs/Misc/Unshaded.j3md")
   lazy val box = {
@@ -23,6 +25,10 @@ class ScreenVisualizer(src:PipeElement, index:Int, app:JME3Application) extends 
 
   def update(tpf:Float) {
     t+=tpf
+    if(!app.getGuiNode.hasChild(hudNode)) {
+      app.pushGuiNodeChild(hudNode)
+    }
+    updateHudNode
     val f = nextFrame
     if(f.isDefined) {
       val ftex:Texture2D = new Texture2D(f.get)

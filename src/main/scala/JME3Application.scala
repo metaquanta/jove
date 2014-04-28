@@ -1,5 +1,6 @@
 import com.jme3.app.SimpleApplication
 import com.jme3.math.Vector3f
+import com.jme3.scene.Node
 
 /**
  * Created by matthew on 4/25/14.
@@ -39,7 +40,16 @@ class JME3Application extends SimpleApplication {
     screens = screens:+s
   }
 
+  def getFont = {guiFont}
+
   def attachDepthMap(d:DepthMapVisualizer, p:Vector3f) {
     dm = d
+  }
+
+  var guiNodes = 0
+  def pushGuiNodeChild(n:Node) {
+    n.setLocalTranslation(0, settings.getHeight() - 20*guiNodes, 0)
+    guiNodes += 1
+    guiNode.attachChild(n)
   }
 }

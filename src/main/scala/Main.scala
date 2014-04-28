@@ -47,16 +47,16 @@ object Main extends App {
   val camera = new PipeElement(new VideoCapturePipe(0), List())
 
   jme3app.attachScreen(
-    new ScreenVisualizer(camera, 0, jme3app),
+    new ScreenVisualizer("Camera", camera, 0, jme3app),
     new Vector3f(2,0,0))
 
   jme3app.attachScreen(
-    new ScreenVisualizer(new PipeElement(new Motion(), List(camera)), 0, jme3app),
+    new ScreenVisualizer("Motion", new PipeElement(new Motion(), List(camera)), 0, jme3app),
     new Vector3f(-2,0,0)
   )
 
   jme3app.attachScreen(
-    new ScreenVisualizer(new PipeElement(new FaceDetector(), List(camera)), 0, jme3app),
+    new ScreenVisualizer("Face Detection", new PipeElement(new FaceDetector(), List(camera)), 0, jme3app),
     new Vector3f(-4,0,0)
   )
 

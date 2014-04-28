@@ -13,7 +13,9 @@ import org.jmonkeyengine.hub.ogli.{RawPointCloudGraphGenerator}
 /**
  * Created by matthew on 4/26/14.
  */
-class DepthMapVisualizer(src:PipeElement, index:Int, app:JME3Application) extends VisualizationNode(src, index) {
+class DepthMapVisualizer(name:String, src:PipeElement, index:Int, app:JME3Application)
+  extends VisualizationNode(name, src, index, app) {
+  
   var n:Node = new Node
   attachChild(n)
 

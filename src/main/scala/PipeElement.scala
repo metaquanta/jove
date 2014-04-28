@@ -11,19 +11,7 @@ import ExecutionContext.Implicits.global
  * Created by matthew on 4/25/14.
  */
 class PipeElement(cap:FramePipe, in:List[PipeElement]) {
-  //val flipdst = new Mat(firstFrame.size(), firstFrame.`type`())
-  //var flipdst:Mat = null
-
   var nextFrame:Future[List[Mat]] = null
-
-  // This should only be called when a frame is available
-  // All frames should be same size
-  lazy val flipdst = {
-    val ff = nextFrame
-    Await.ready(ff, 0 nanos)
-    val f=ff.value.get.get.head
-    new Mat(f.size(), f.`type`())
-  }
 
   def getFrame():Future[List[Mat]] = {
     if(nextFrame == null || nextFrame.isCompleted) {
@@ -44,18 +32,17 @@ class PipeElement(cap:FramePipe, in:List[PipeElement]) {
   }
 
   def mat2Image(mat:Mat):Image = {
-    //println("Rendering Frame " + mat)
-
     // Remap the mat
     // This is really slow, I don't know why
     //Imgproc.remap( mat, flipdst, flipmapx, flipmapy, 1) //Imgproc.CV_INTER_LINEAR = 1 and is private for some reason
+    val flipdst = new Mat
     Core.flip(mat, flipdst, 0)
 
     // Perform the voodoo magic
     val width: Int = flipdst.width
     val height: Int = flipdst.height
-    val buffChannels: Int = 3
-    val len: Int = width * height * buffChannels
+    val channels: Int = flipdst.channels()
+    val len: Int = width * height * channels
     val byteBuff: ByteBuffer = ByteBuffer.allocateDirect(len)
     val bytes: Array[Byte] = new Array[Byte](len)
     flipdst.get(0, 0, bytes)
