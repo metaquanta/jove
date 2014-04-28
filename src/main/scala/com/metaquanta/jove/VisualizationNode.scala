@@ -1,12 +1,11 @@
+package com.metaquanta.jove
+
 import com.jme3.font.BitmapText
 import com.jme3.math.ColorRGBA
-import com.jme3.scene.Geometry
-import com.jme3.scene.shape.Quad
-import scala.concurrent.Await
-import com.jme3.scene.{Geometry, Node}
+import com.jme3.scene.Node
 import scala.concurrent._
 import scala.concurrent.duration._
-import com.jme3.texture.{Texture2D, Image}
+import com.jme3.texture.Image
 
 /**
  * Created by matthew on 4/28/14.

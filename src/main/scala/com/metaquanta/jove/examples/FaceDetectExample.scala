@@ -1,10 +1,12 @@
+package com.metaquanta.jove.examples
+
+import com.metaquanta.jove._
 import com.jme3.math.Vector3f
-import org.opencv.highgui.VideoCapture
 
 /**
  * Created by matthew on 4/25/14.
  */
-object Main extends App {
+object FaceDetectExample extends App {
   println("loading opencv...")
   System.loadLibrary("opencv_java248")
   println("loading JME3...")

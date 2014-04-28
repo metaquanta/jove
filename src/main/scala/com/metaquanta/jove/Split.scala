@@ -1,3 +1,5 @@
+package com.metaquanta.jove
+
 import org.opencv.core.{Rect, Mat}
 
 /**

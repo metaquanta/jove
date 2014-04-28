@@ -7,7 +7,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 
 /**
- * Main interface for point cloud generators.<br>
+ * FaceDetectExample interface for point cloud generators.<br>
  * There are several possibilities to generate a scene graph for jME3.<br>
  * Input can comprise coordinates and colors or just coordinates only.<br>
  * Output is a root node for the jME3 scene graph.<br>

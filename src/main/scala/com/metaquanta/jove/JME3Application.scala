@@ -1,3 +1,5 @@
+package com.metaquanta.jove
+
 import com.jme3.app.SimpleApplication
 import com.jme3.math.Vector3f
 import com.jme3.scene.Node

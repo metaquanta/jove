@@ -1,10 +1,9 @@
+package com.metaquanta.jove
+
 import com.jme3.texture.Image
 import java.nio.ByteBuffer
-import org.opencv.core.{CvType, Mat, Core}
-import org.opencv.highgui.{VideoCapture, Highgui}
-import org.opencv.imgproc.Imgproc
+import org.opencv.core.{Mat, Core}
 import scala.concurrent._
-import scala.concurrent.duration._
 import ExecutionContext.Implicits.global
 
 /**

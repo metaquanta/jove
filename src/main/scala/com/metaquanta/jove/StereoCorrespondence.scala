@@ -1,4 +1,6 @@
-import org.opencv.calib3d.{StereoBM, StereoSGBM}
+package com.metaquanta.jove
+
+import org.opencv.calib3d.StereoBM
 import org.opencv.core.{CvType, Mat}
 import org.opencv.imgproc.Imgproc
 

@@ -1,9 +1,8 @@
-import org.opencv.calib3d.StereoBM
+package com.metaquanta.jove
+
 import org.opencv.core._
 import org.opencv.imgproc.Imgproc
 import org.opencv.objdetect.CascadeClassifier
-import org.opencv.highgui.Highgui
-
 
 /**
  * Created by matthew on 4/28/14.
