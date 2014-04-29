@@ -1,14 +1,15 @@
-package com.metaquanta.jove
+package com.metaquanta.jove.cvstageexamples
 
 import org.opencv.calib3d.StereoBM
 import org.opencv.core.{CvType, Mat}
 import org.opencv.imgproc.Imgproc
+import com.metaquanta.jove.FramePipe
 
 /**
  * Created by matthew on 4/26/14.
  */
 class StereoCorrespondence extends FramePipe {
-  val SGBM = new StereoBM()
+  val SGBM = new StereoBM(StereoBM.BASIC_PRESET, 0, 21)
   def getFrame(ins:List[Mat]):List[Mat] = {
     val left = new Mat()
     val right = new Mat()

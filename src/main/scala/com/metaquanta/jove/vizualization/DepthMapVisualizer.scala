@@ -3,7 +3,8 @@ package com.metaquanta.jove.vizualization
 import com.jme3.scene.Node
 import com.jme3.texture.Image
 import org.jmonkeyengine.hub.ogli.RawPointCloudGraphGenerator
-import com.metaquanta.jove.{VisualizationNode, JME3Application, PipeElement}
+import com.metaquanta.jove.{JME3Application, PipeElement}
+import com.jme3.renderer.queue.RenderQueue
 
 
 /**
@@ -21,9 +22,12 @@ class DepthMapVisualizer(name:String, src:PipeElement, index:Int, app:JME3Applic
       val (points, colors) = generatePoints(f.get)
       val generator = new RawPointCloudGraphGenerator(app.getAssetManager)
       detachChild(n)
-      n = new Node
-      n.attachChild(generator.generatePointCloudGraph(points,colors))
-      attachChild(n)
+      val n2 = new Node
+      n2.attachChild(generator.generatePointCloudGraph(points,colors))
+      detachChild(n)
+      attachChild(n2)
+      n=n2
+
     }
   }
 
@@ -35,14 +39,15 @@ class DepthMapVisualizer(name:String, src:PipeElement, index:Int, app:JME3Applic
     var i: Int = 0
     while (i < map.getWidth*map.getHeight) {
       {
-        result(i * 3) = (i % map.getWidth).toFloat/map.getWidth
-        result(i * 3 + 1) = (i / map.getWidth).toFloat/map.getWidth
+        result(i * 3) = (i % map.getWidth).toFloat/map.getHeight
+        result(i * 3 + 1) = (i / map.getWidth).toFloat/map.getHeight
         result(i * 3 + 2) = (data.get(i*3)+data.get(i*3+1)+data.get(i*3+2)).toFloat/(255*3)
 
         colors(i * 4) = (i % map.getWidth).toFloat/map.getWidth
         colors(i * 4 + 1) = (i / map.getWidth).toFloat/map.getWidth
         colors(i * 4 + 2) = result(i * 3 + 2)
-        colors(i * 4 + 3) = 1f//if (result(i * 3 + 2) <  .0001f) 0f else 1f
+        // Cull out some noise and the flat values
+        colors(i * 4 + 3) = if (result(i * 3 + 2) <  .0001f || result(i * 3 + 2) >  .99f) 0f else 1f
       }
       ({
         i += 1; i - 1

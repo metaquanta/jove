@@ -3,6 +3,7 @@ package com.metaquanta.jove
 import com.jme3.app.SimpleApplication
 import com.jme3.math.Vector3f
 import com.jme3.scene.Node
+import com.metaquanta.jove.vizualization.{DepthMapVisualizer, ScreenVisualizer}
 
 /**
  * Created by matthew on 4/25/14.

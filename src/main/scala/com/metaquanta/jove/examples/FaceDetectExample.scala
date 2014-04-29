@@ -2,6 +2,8 @@ package com.metaquanta.jove.examples
 
 import com.metaquanta.jove._
 import com.jme3.math.Vector3f
+import com.metaquanta.jove.cvstageexamples.{FaceDetector, Motion}
+import com.metaquanta.jove.vizualization.ScreenVisualizer
 
 /**
  * Created by matthew on 4/25/14.

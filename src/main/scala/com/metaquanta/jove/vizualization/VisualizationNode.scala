@@ -1,4 +1,4 @@
-package com.metaquanta.jove
+package com.metaquanta.jove.vizualization
 
 import com.jme3.font.BitmapText
 import com.jme3.math.ColorRGBA
@@ -6,6 +6,7 @@ import com.jme3.scene.Node
 import scala.concurrent._
 import scala.concurrent.duration._
 import com.jme3.texture.Image
+import com.metaquanta.jove.{JME3Application, PipeElement}
 
 /**
  * Created by matthew on 4/28/14.

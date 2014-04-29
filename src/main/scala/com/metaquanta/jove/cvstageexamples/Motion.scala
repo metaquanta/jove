@@ -1,6 +1,8 @@
-package com.metaquanta.jove
+package com.metaquanta.jove.cvstageexamples
 
 import org.opencv.core.Mat
+import com.metaquanta.jove._
+import com.metaquanta.jove.javaopencvexamples.MotionExampleJava
 
 /**
  * Created by matthew on 4/26/14.

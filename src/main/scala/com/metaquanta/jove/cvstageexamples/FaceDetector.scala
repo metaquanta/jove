@@ -1,8 +1,9 @@
-package com.metaquanta.jove
+package com.metaquanta.jove.cvstageexamples
 
 import org.opencv.core._
 import org.opencv.imgproc.Imgproc
 import org.opencv.objdetect.CascadeClassifier
+import com.metaquanta.jove.FramePipe
 
 /**
  * Created by matthew on 4/28/14.

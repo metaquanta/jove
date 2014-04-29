@@ -1,3 +1,5 @@
+package com.metaquanta.jove.javaopencvexamples;
+
 import org.opencv.core.*;
 
 import java.util.ArrayList;
