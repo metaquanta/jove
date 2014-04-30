@@ -1,9 +1,9 @@
 package com.metaquanta.jove.examples
 
-import com.metaquanta.jove.{VideoCapturePipe, PipeElement, JME3Application}
+import com.metaquanta.jove.{Jove, JME3Application}
 import com.metaquanta.jove.visualization.{DepthMapVisualizer, ScreenVisualizer}
 import com.jme3.math.Vector3f
-import com.metaquanta.jove.cvstageexamples.{StereoCorrespondence, Split}
+import com.metaquanta.jove.stage.{VideoCapture, StereoCorrespondence, Split}
 import com.metaquanta.jove.position.SpherePositioningHelper
 
 /**
@@ -19,36 +19,40 @@ object StereoDepthExample extends App {
     jme3app.wait()
   }
 
-  val video = new PipeElement(new VideoCapturePipe("/Users/matthew/Desktop/test.mkv"), List())
+  val process = new Jove(jme3app)
 
-  val split = new PipeElement(new Split(), List(video))
+  val video = process.addStage("video", new VideoCapture("/Users/matthew/Desktop/test.mkv"))
 
-  val stereo = new PipeElement(new StereoCorrespondence(),List(split))
+//  val split = process.addStage("splitter", new Split(), video(0))
+//
+//  val stereo = process.addStage("depthMap", new StereoCorrespondence(), List(split(0), split(1)))
 
-  jme3app.attachVisualizer(
-    new ScreenVisualizer("Video", video, 0, jme3app, new SpherePositioningHelper(0,-1))
-  )
-
-  jme3app.attachVisualizer(
-    new ScreenVisualizer("Left", split, 0, jme3app, new SpherePositioningHelper(-1,0))
-  )
-
-  jme3app.attachVisualizer(
-    new ScreenVisualizer("Right", split, 1, jme3app, new SpherePositioningHelper(1,0))
-  )
-
-  jme3app.attachVisualizer(
-    new ScreenVisualizer("DepthMap", stereo, 0, jme3app, new SpherePositioningHelper(0,1))
-  )
-
-  jme3app.attachVisualizer(
-    new DepthMapVisualizer("DepthMap3D", stereo, 0, jme3app, new SpherePositioningHelper(0,0))
-  )
-
-  jme3app.attachVisualizer(
-    new ScreenVisualizer("Leftp", split, 0, jme3app, new SpherePositioningHelper(0,0))
-  )
-
+  process.addVisualizer(new ScreenVisualizer(new SpherePositioningHelper(0,-1), jme3app), video(0))
+//
+//  jme3app.attachVisualizer(
+//    new ScreenVisualizer("Video", video, 0, jme3app, new SpherePositioningHelper(0,-1))
+//  )
+//
+//  jme3app.attachVisualizer(
+//    new ScreenVisualizer("Left", split, 0, jme3app, new SpherePositioningHelper(-1,0))
+//  )
+//
+//  jme3app.attachVisualizer(
+//    new ScreenVisualizer("Right", split, 1, jme3app, new SpherePositioningHelper(1,0))
+//  )
+//
+//  jme3app.attachVisualizer(
+//    new ScreenVisualizer("DepthMap", stereo, 0, jme3app, new SpherePositioningHelper(0,1))
+//  )
+//
+//  jme3app.attachVisualizer(
+//    new DepthMapVisualizer("DepthMap3D", stereo, 0, jme3app, new SpherePositioningHelper(0,0))
+//  )
+//
+//  jme3app.attachVisualizer(
+//    new ScreenVisualizer("Leftp", split, 0, jme3app, new SpherePositioningHelper(0,0))
+//  )
+//
 
 
 }

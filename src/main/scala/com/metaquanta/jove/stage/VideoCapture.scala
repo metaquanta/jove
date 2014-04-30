@@ -1,12 +1,12 @@
-package com.metaquanta.jove
+package com.metaquanta.jove.stage
 
 import org.opencv.core.Mat
-import org.opencv.highgui.VideoCapture
+import org.opencv.highgui
 
 /**
  * Created by matthew on 4/26/14.
  */
-class VideoCapturePipe extends VideoCapture with FramePipe {
+class VideoCapture extends highgui.VideoCapture with Stage {
   // emulate java constructors
   def this(n:Int) {
     this()

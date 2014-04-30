@@ -1,12 +1,11 @@
-package com.metaquanta.jove.cvstageexamples
+package com.metaquanta.jove.stage
 
 import org.opencv.core.{Rect, Mat}
-import com.metaquanta.jove.FramePipe
 
 /**
  * Created by matthew on 4/26/14.
  */
-class Split extends FramePipe {
+class Split extends Stage {
   def getFrame(ins:List[Mat]):List[Mat] = {
     val in = ins.head
     val width = in.width

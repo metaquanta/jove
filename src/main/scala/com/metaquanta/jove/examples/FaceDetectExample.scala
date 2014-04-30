@@ -2,7 +2,7 @@ package com.metaquanta.jove.examples
 
 import com.metaquanta.jove._
 import com.jme3.math.Vector3f
-import com.metaquanta.jove.cvstageexamples.{FaceDetector, Motion}
+import com.metaquanta.jove.stage.{VideoCapture, FaceDetector, Motion}
 import com.metaquanta.jove.visualization.ScreenVisualizer
 
 /**
@@ -18,15 +18,15 @@ object FaceDetectExample extends App {
     jme3app.wait()
   }
 
-//  val video = new PipeElement(new VideoCapturePipe("/Users/matthew/Desktop/test.mkv"), List())
+//  val video = new Element(new VideoCapture("/Users/matthew/Desktop/test.mkv"), List())
 //
 ////  jme3app.attachScreen(
 ////    new ScreenVisualizer(video, 0, jme3app),
 ////    new Vector3f(0,0,0))
 //
-//  val split = new PipeElement(new Split(), List(video))
+//  val split = new Element(new Split(), List(video))
 //
-//  val stereo = new PipeElement(new StereoCorrespondence(),List(split))
+//  val stereo = new Element(new StereoCorrespondence(),List(split))
 ////
 ////  jme3app.attachScreen(
 ////    new ScreenVisualizer(split, 0, jme3app),
@@ -48,19 +48,19 @@ object FaceDetectExample extends App {
 //    new Vector3f(0,0,0)
 //  )
 
-  val camera = new PipeElement(new VideoCapturePipe(0), List())
+  //val camera = new PipeElement(new VideoCapture(0), List())
 
 //  jme3app.attachVisualizer(
 //    new ScreenVisualizer("Camera", camera, 0, jme3app, new Vector3f(2,0,0))
 //  )
 //
 //  jme3app.attachVisualizer(
-//    new ScreenVisualizer("Motion", new PipeElement(new Motion(), List(camera)), 0, jme3app,
+//    new ScreenVisualizer("Motion", new Element(new Motion(), List(camera)), 0, jme3app,
 //      new Vector3f(-2,0,0))
 //  )
 //
 //  jme3app.attachVisualizer(
-//    new ScreenVisualizer("Face Detection", new PipeElement(new FaceDetector(), List(camera)), 0, jme3app,
+//    new ScreenVisualizer("Face Detection", new Element(new FaceDetector(), List(camera)), 0, jme3app,
 //      new Vector3f(-4,0,0))
 //  )
 
