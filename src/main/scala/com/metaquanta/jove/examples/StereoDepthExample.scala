@@ -1,9 +1,10 @@
 package com.metaquanta.jove.examples
 
 import com.metaquanta.jove.{VideoCapturePipe, PipeElement, JME3Application}
-import com.metaquanta.jove.vizualization.{DepthMapVisualizer, ScreenVisualizer}
+import com.metaquanta.jove.visualization.{DepthMapVisualizer, ScreenVisualizer}
 import com.jme3.math.Vector3f
 import com.metaquanta.jove.cvstageexamples.{StereoCorrespondence, Split}
+import com.metaquanta.jove.position.SpherePositioningHelper
 
 /**
  * Created by matthew on 4/25/14.
@@ -18,35 +19,36 @@ object StereoDepthExample extends App {
     jme3app.wait()
   }
 
-    val video = new PipeElement(new VideoCapturePipe("/Users/matthew/Desktop/test.mkv"), List())
+  val video = new PipeElement(new VideoCapturePipe("/Users/matthew/Desktop/test.mkv"), List())
 
-//    jme3app.attachScreen(
-//      new ScreenVisualizer("Video", video, 0, jme3app),
-//      new Vector3f(0,0,0))
+  val split = new PipeElement(new Split(), List(video))
 
-    val split = new PipeElement(new Split(), List(video))
+  val stereo = new PipeElement(new StereoCorrespondence(),List(split))
 
-    val stereo = new PipeElement(new StereoCorrespondence(),List(split))
+  jme3app.attachVisualizer(
+    new ScreenVisualizer("Video", video, 0, jme3app, new SpherePositioningHelper(0,-1))
+  )
 
-    jme3app.attachScreen(
-      new ScreenVisualizer("Left", split, 0, jme3app),
-      new Vector3f(0f,0f,-.01f)
-    )
+  jme3app.attachVisualizer(
+    new ScreenVisualizer("Left", split, 0, jme3app, new SpherePositioningHelper(-1,0))
+  )
 
-//    jme3app.attachScreen(
-//      new ScreenVisualizer(split, 1, jme3app),
-//      new Vector3f(0,1,0)
-//    )
+  jme3app.attachVisualizer(
+    new ScreenVisualizer("Right", split, 1, jme3app, new SpherePositioningHelper(1,0))
+  )
 
-    jme3app.attachScreen(
-      new ScreenVisualizer("DepthMap", stereo, 0, jme3app),
-      new Vector3f(0,2,0)
-    )
+  jme3app.attachVisualizer(
+    new ScreenVisualizer("DepthMap", stereo, 0, jme3app, new SpherePositioningHelper(0,1))
+  )
 
-    jme3app.attachDepthMap(
-      new DepthMapVisualizer("DepthMap3D", stereo, 0, jme3app),
-      new Vector3f(0,0,0)
-    )
+  jme3app.attachVisualizer(
+    new DepthMapVisualizer("DepthMap3D", stereo, 0, jme3app, new SpherePositioningHelper(0,0))
+  )
+
+  jme3app.attachVisualizer(
+    new ScreenVisualizer("Leftp", split, 0, jme3app, new SpherePositioningHelper(0,0))
+  )
+
 
 
 }

@@ -10,7 +10,7 @@ import com.metaquanta.jove.FramePipe
  */
 class FaceDetector  extends FramePipe {
   val faceCascade = new CascadeClassifier()
-  println("Cascade.load: " + faceCascade.load("src/main/resources/haarcascades/haarcascade_frontalface_alt.xml"))
+  println("CascadeClassifier.load(haarcascade_frontalface): " + faceCascade.load("src/main/resources/haarcascades/haarcascade_frontalface_alt.xml"))
 
   def getFrame(ins:List[Mat]):List[Mat] = {
     val input = ins(0)
@@ -27,7 +27,7 @@ class FaceDetector  extends FramePipe {
     val facesAr = faces.toArray()
 
     if(facesAr.size > 0) {
-      println("FOUND A FACE!")
+      //println("FOUND A FACE!")
       val center = new Point( facesAr(0).x + facesAr(0).width*0.5, facesAr(0).y + facesAr(0).height*0.5 )
       Core.ellipse( input, center, new Size( facesAr(0).width*0.5, facesAr(0).height*0.5), 0, 0, 360, new Scalar( 255, 0, 255 ), 4, 8, 0 );
     }

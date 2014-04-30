@@ -1,16 +1,18 @@
-package com.metaquanta.jove.vizualization
+package com.metaquanta.jove.visualization
 
 import com.jme3.material.Material
 import com.jme3.scene.shape.Quad
 import com.jme3.scene.Geometry
 import com.jme3.texture.Texture2D
 import com.metaquanta.jove.{JME3Application, PipeElement}
+import com.metaquanta.jove.position.Position
 import com.jme3.renderer.queue.RenderQueue
+import com.jme3.math.Vector3f
 
 /**
  * Created by matthew on 4/25/14.
  */
-class ScreenVisualizer(name:String, src:PipeElement, index:Int, app:JME3Application)
+class ScreenVisualizer(name:String, src:PipeElement, index:Int, app:JME3Application, pos:Position)
   extends VisualizationNode(name, src, index, app) {
 
   val mat = new Material(app.getAssetManager(),
@@ -21,6 +23,8 @@ class ScreenVisualizer(name:String, src:PipeElement, index:Int, app:JME3Applicat
     b.setMaterial(mat)
 
     attachChild(b)
+    setLocalTranslation(pos.position(width.toFloat/height.toFloat, 1f))
+    setLocalRotation(pos.orientation(width.toFloat/height.toFloat, 1f))
     b
   }
 

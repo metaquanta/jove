@@ -1,4 +1,4 @@
-package com.metaquanta.jove.vizualization
+package com.metaquanta.jove.visualization
 
 import com.jme3.font.BitmapText
 import com.jme3.math.ColorRGBA
@@ -11,7 +11,7 @@ import com.metaquanta.jove.{JME3Application, PipeElement}
 /**
  * Created by matthew on 4/28/14.
  */
-class VisualizationNode (name:String, input:PipeElement, index:Int, app:JME3Application) extends Node {
+abstract class VisualizationNode (name:String, input:PipeElement, index:Int, app:JME3Application) extends Node {
   var t:Float = 0
   var lastFrameAt:Float = 0
   var frameAt:Float = 0
@@ -41,6 +41,8 @@ class VisualizationNode (name:String, input:PipeElement, index:Int, app:JME3Appl
     updateHudNode
     hudText
   }
+
+  def update(tpf:Float)
 
   def updateHudNode {
     hudText.setText(name + " fps:" + fps)

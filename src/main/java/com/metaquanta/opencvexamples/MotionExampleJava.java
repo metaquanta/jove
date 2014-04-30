@@ -1,4 +1,4 @@
-package com.metaquanta.jove.javaopencvexamples;
+package com.metaquanta.opencvexamples;
 
 import org.opencv.core.*;
 

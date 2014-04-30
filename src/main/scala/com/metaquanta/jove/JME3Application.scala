@@ -2,8 +2,8 @@ package com.metaquanta.jove
 
 import com.jme3.app.SimpleApplication
 import com.jme3.math.Vector3f
-import com.jme3.scene.Node
-import com.metaquanta.jove.vizualization.{DepthMapVisualizer, ScreenVisualizer}
+import com.jme3.scene.{CameraNode, Node}
+import com.metaquanta.jove.visualization.{VisualizationNode, DepthMapVisualizer, ScreenVisualizer}
 
 /**
  * Created by matthew on 4/25/14.
@@ -11,10 +11,11 @@ import com.metaquanta.jove.vizualization.{DepthMapVisualizer, ScreenVisualizer}
 class JME3Application extends SimpleApplication {
   start()
 
-  var screens = List[ScreenVisualizer]()
-  var dm:DepthMapVisualizer = null
+  var visualizers = List[VisualizationNode]()
 
   def simpleInitApp() {
+    getCamera.setLocation(new Vector3f(0, 0, 0))
+    getCamera.lookAt(new Vector3f(1, 0, 0), Vector3f.UNIT_Y)
     synchronized {
       println("notifying...")
       notify()
@@ -22,32 +23,21 @@ class JME3Application extends SimpleApplication {
   }
 
   override def simpleUpdate(tpf:Float) {
-    screens.foreach(s => {
+    visualizers.foreach(s => {
       if(!rootNode.hasChild(s)) {
         rootNode.attachChild(s)
       }
     })
-    screens.foreach(s => s.update(tpf))
-
-    if(dm != null) {
-      if(!rootNode.hasChild(dm)) {
-        rootNode.attachChild(dm)
-      }
-      dm.update(tpf)
-    }
+    visualizers.foreach(s => s.update(tpf))
   }
 
-  def attachScreen(s:ScreenVisualizer, p:Vector3f) {
-    s.setLocalTranslation(p)
-    //rootNode.attachChild(s)
-    screens = screens:+s
+  def attachVisualizer(v:VisualizationNode) {
+    // This gets called outside jme's thread. We have to attach on update.
+    //rootNode.attachChild(v)
+    visualizers = visualizers:+v
   }
 
   def getFont = {guiFont}
-
-  def attachDepthMap(d:DepthMapVisualizer, p:Vector3f) {
-    dm = d
-  }
 
   var guiNodes = 0
   def pushGuiNodeChild(n:Node) {

@@ -3,7 +3,7 @@ package com.metaquanta.jove.examples
 import com.metaquanta.jove._
 import com.jme3.math.Vector3f
 import com.metaquanta.jove.cvstageexamples.{FaceDetector, Motion}
-import com.metaquanta.jove.vizualization.ScreenVisualizer
+import com.metaquanta.jove.visualization.ScreenVisualizer
 
 /**
  * Created by matthew on 4/25/14.
@@ -50,19 +50,19 @@ object FaceDetectExample extends App {
 
   val camera = new PipeElement(new VideoCapturePipe(0), List())
 
-  jme3app.attachScreen(
-    new ScreenVisualizer("Camera", camera, 0, jme3app),
-    new Vector3f(2,0,0))
-
-  jme3app.attachScreen(
-    new ScreenVisualizer("Motion", new PipeElement(new Motion(), List(camera)), 0, jme3app),
-    new Vector3f(-2,0,0)
-  )
-
-  jme3app.attachScreen(
-    new ScreenVisualizer("Face Detection", new PipeElement(new FaceDetector(), List(camera)), 0, jme3app),
-    new Vector3f(-4,0,0)
-  )
+//  jme3app.attachVisualizer(
+//    new ScreenVisualizer("Camera", camera, 0, jme3app, new Vector3f(2,0,0))
+//  )
+//
+//  jme3app.attachVisualizer(
+//    new ScreenVisualizer("Motion", new PipeElement(new Motion(), List(camera)), 0, jme3app,
+//      new Vector3f(-2,0,0))
+//  )
+//
+//  jme3app.attachVisualizer(
+//    new ScreenVisualizer("Face Detection", new PipeElement(new FaceDetector(), List(camera)), 0, jme3app,
+//      new Vector3f(-4,0,0))
+//  )
 
 
 }
