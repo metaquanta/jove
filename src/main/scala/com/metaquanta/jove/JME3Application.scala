@@ -40,7 +40,7 @@ class JME3Application extends SimpleApplication {
   def getFont = {guiFont}
 
   var guiNodes = 0
-  def pushGuiNodeChild(n:Node) {
+  def attachGuiNodeChild(n:Node) {
     n.setLocalTranslation(0, settings.getHeight() - 20*guiNodes, 0)
     guiNodes += 1
     guiNode.attachChild(n)

@@ -7,23 +7,16 @@ import com.jme3.texture.Image
 import java.nio.ByteBuffer
 import com.metaquanta.jove.visualization.{ImageStream, Visualizer}
 import ExecutionContext.Implicits.global
-import com.metaquanta.jove.position.Position
 import scala.concurrent.duration.Duration
-import com.jme3.font.BitmapText
-import com.jme3.scene.Node
-import com.jme3.math.ColorRGBA
-import scala.util.Try
 
 /**
  * Created by matthew on 4/30/14.
  */
 class Jove(app:JME3Application) {
 
-//  var visualizers = List[VisualizerElement]()
-
   def addStage(name:String, stage:Stage, inputs:List[ElementOutputSplit]):Stream[ElementOutputSplit] = {
-    val element = new Element(stage, inputs)
-    Stream.from(0).map(i => new ElementOutputSplit(element, i))
+    // Create an iterator that returns an OutputSplit with the requested index
+    Stream.from(0).map(i => new ElementOutputSplit(new Element(name, stage, inputs), i))
   }
 
   def addStage(name:String, stage:Stage, input:ElementOutputSplit):Stream[ElementOutputSplit] = {
@@ -35,7 +28,6 @@ class Jove(app:JME3Application) {
   }
 
   def addVisualizer(visualizer:Visualizer, input:ElementOutputSplit) {
-    //visualizers:+
     new VisualizerElement(visualizer, input)
   }
 
@@ -46,6 +38,7 @@ class Jove(app:JME3Application) {
       def next:Image = {
         Await.ready(frameFuture, Duration.Inf)
         val img:Image = frameFuture.value.get.get
+        // start waiting on the next frame
         frameFuture = input.getImage()
         img
       }
@@ -57,6 +50,8 @@ class Jove(app:JME3Application) {
   }
 
   class ElementOutputSplit(val element:Element, val index:Int) {
+
+    // All these do is pull the desired element out of the list
     def getImage():Future[Image] = {
       for {
         imgs <- element.getImage()
@@ -72,10 +67,11 @@ class Jove(app:JME3Application) {
     }
   }
 
-  class Element(cap:Stage, in:List[ElementOutputSplit]) {
+  class Element(name:String, cap:Stage, in:List[ElementOutputSplit]) {
     var nextFrame:Future[List[Mat]] = null
 
     def getFrame():Future[List[Mat]] = {
+      // We always return a future that will return the /next/ frame
       if(nextFrame == null || nextFrame.isCompleted) {
         val inmats = in.map(x => x.element.getFrame)
         nextFrame = for {
@@ -94,21 +90,18 @@ class Jove(app:JME3Application) {
     }
 
     def mat2Image(mat:Mat):Image = {
-      // Remap the mat
-      // This is really slow, I don't know why
-      //Imgproc.remap( mat, flipdst, flipmapx, flipmapy, 1) //Imgproc.CV_INTER_LINEAR = 1 and is private for some reason
+      // OpenCV mats are in reverse order of what jME3 expects
       val flipdst = new Mat
       Core.flip(mat, flipdst, 0)
 
       // Perform the voodoo magic
-      val width: Int = flipdst.width
-      val height: Int = flipdst.height
-      val channels: Int = flipdst.channels()
-      val len: Int = width * height * channels
+      val len: Int = flipdst.width * flipdst.height * flipdst.channels()
       val byteBuff: ByteBuffer = ByteBuffer.allocateDirect(len)
       val bytes: Array[Byte] = new Array[Byte](len)
       flipdst.get(0, 0, bytes)
-      new Image(Image.Format.BGR8, width, height, byteBuff.put(bytes))
+      new Image(Image.Format.BGR8,
+        flipdst.width, flipdst.height,
+        byteBuff.put(bytes))
     }
 
   }

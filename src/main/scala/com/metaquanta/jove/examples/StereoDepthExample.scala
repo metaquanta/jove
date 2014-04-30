@@ -2,7 +2,6 @@ package com.metaquanta.jove.examples
 
 import com.metaquanta.jove.{Jove, JME3Application}
 import com.metaquanta.jove.visualization.{DepthMapVisualizer, ScreenVisualizer}
-import com.jme3.math.Vector3f
 import com.metaquanta.jove.stage.{VideoCapture, StereoCorrespondence, Split}
 import com.metaquanta.jove.position.SpherePositioningHelper
 
@@ -18,6 +17,7 @@ object StereoDepthExample extends App {
     println("waiting...")
     jme3app.wait()
   }
+
 
   val process = new Jove(jme3app)
 
