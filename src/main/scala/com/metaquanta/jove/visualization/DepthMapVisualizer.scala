@@ -17,25 +17,22 @@ class DepthMapVisualizer(pos:Position, app:JME3Application)
   attachChild(box)
 
   def update(tpf:Float) {
-    synchronized {
-      if (newImage) {
-        if (!app.getRootNode.hasChild(this)){
-          app.getRootNode.attachChild(this)
-        }
-        val (points, colors) = generatePoints(image)
-        val generator = new RawPointCloudGraphGenerator(app.getAssetManager)
-        detachChild(box)
-        val n = new Node
-        setLocalTranslation(pos.position(image.getWidth.toFloat / image.getHeight.toFloat, 1f))
-        setLocalRotation(pos.orientation(image.getWidth.toFloat / image.getHeight.toFloat, 1f))
-
-        newImage = false
-
-        n.attachChild(generator.generatePointCloudGraph(points, colors))
-        detachChild(box)
-        attachChild(n)
-        box = n
+    if (imageStream.ready) {
+      val image = imageStream.next
+      if (!app.getRootNode.hasChild(this)){
+        app.getRootNode.attachChild(this)
       }
+      val (points, colors) = generatePoints(image)
+      val generator = new RawPointCloudGraphGenerator(app.getAssetManager)
+      detachChild(box)
+      val n = new Node
+      setLocalTranslation(pos.position(image.getWidth.toFloat / image.getHeight.toFloat, 1f))
+      setLocalRotation(pos.orientation(image.getWidth.toFloat / image.getHeight.toFloat, 1f))
+
+      n.attachChild(generator.generatePointCloudGraph(points, colors))
+      detachChild(box)
+      attachChild(n)
+      box = n
     }
   }
 

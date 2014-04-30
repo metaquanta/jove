@@ -10,16 +10,12 @@ import com.metaquanta.jove.JME3Application
  * Created by matthew on 4/30/14.
  */
 abstract class VisualizationNode(app:JME3Application) extends Node {
-  var image:Image = null
-  var newImage:Boolean = false
+  var imageStream:ImageStream = null
 
   app.attachVisualizer(this)
 
-  def setImage(img:Image):Boolean = {
-    image=img
-    newImage=true
-
-    true
+  def setImageStream(img:ImageStream) = {
+    imageStream=img
   }
 
   val mat = new Material(app.getAssetManager(),

@@ -23,36 +23,34 @@ object StereoDepthExample extends App {
 
   val video = process.addStage("video", new VideoCapture("/Users/matthew/Desktop/test.mkv"))
 
-//  val split = process.addStage("splitter", new Split(), video(0))
-//
-//  val stereo = process.addStage("depthMap", new StereoCorrespondence(), List(split(0), split(1)))
+  val split = process.addStage("splitter", new Split(), video(0))
 
-  process.addVisualizer(new ScreenVisualizer(new SpherePositioningHelper(0,-1), jme3app), video(0))
-//
-//  jme3app.attachVisualizer(
-//    new ScreenVisualizer("Video", video, 0, jme3app, new SpherePositioningHelper(0,-1))
-//  )
-//
-//  jme3app.attachVisualizer(
-//    new ScreenVisualizer("Left", split, 0, jme3app, new SpherePositioningHelper(-1,0))
-//  )
-//
-//  jme3app.attachVisualizer(
-//    new ScreenVisualizer("Right", split, 1, jme3app, new SpherePositioningHelper(1,0))
-//  )
-//
-//  jme3app.attachVisualizer(
-//    new ScreenVisualizer("DepthMap", stereo, 0, jme3app, new SpherePositioningHelper(0,1))
-//  )
-//
-//  jme3app.attachVisualizer(
-//    new DepthMapVisualizer("DepthMap3D", stereo, 0, jme3app, new SpherePositioningHelper(0,0))
-//  )
-//
-//  jme3app.attachVisualizer(
-//    new ScreenVisualizer("Leftp", split, 0, jme3app, new SpherePositioningHelper(0,0))
-//  )
-//
+  val stereo = process.addStage("depthMap", new StereoCorrespondence(), List(split(0), split(1)))
+
+  process.addVisualizer(
+    new ScreenVisualizer(new SpherePositioningHelper(0,-1), jme3app), video(0)
+  )
+
+  process.addVisualizer(
+    new ScreenVisualizer(new SpherePositioningHelper(-1,0), jme3app), split(0)
+  )
+
+  process.addVisualizer(
+    new ScreenVisualizer(new SpherePositioningHelper(1,0), jme3app), split(1)
+  )
+
+  process.addVisualizer(
+    new ScreenVisualizer(new SpherePositioningHelper(0,1), jme3app), stereo(0)
+  )
+
+  process.addVisualizer(
+    new DepthMapVisualizer(new SpherePositioningHelper(0,0), jme3app), stereo(0)
+  )
+
+  process.addVisualizer(
+    new ScreenVisualizer(new SpherePositioningHelper(0,0), jme3app), split(0)
+  )
+
 
 
 }

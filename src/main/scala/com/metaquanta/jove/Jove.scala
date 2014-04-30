@@ -5,7 +5,7 @@ import scala.concurrent._
 import org.opencv.core.{Core, Mat}
 import com.jme3.texture.Image
 import java.nio.ByteBuffer
-import com.metaquanta.jove.visualization.{Visualizer}
+import com.metaquanta.jove.visualization.{ImageStream, Visualizer}
 import ExecutionContext.Implicits.global
 import com.metaquanta.jove.position.Position
 import scala.concurrent.duration.Duration
@@ -41,18 +41,19 @@ class Jove(app:JME3Application) {
 
   class VisualizerElement(visualizer:Visualizer, input:ElementOutputSplit) {
     var frameFuture:Future[Image] = input.getImage()
-    frameFuture onComplete onFrameComplete
 
-    def onFrameComplete(img:Try[Image]) {
-        if(img.isSuccess) {
-          img.get.synchronized {
-            visualizer.setImage(img.get)
-            img.get.wait()
-          }
-        }
+    visualizer.setImageStream(new Object with ImageStream {
+      def next:Image = {
+        Await.ready(frameFuture, Duration.Inf)
+        val img:Image = frameFuture.value.get.get
         frameFuture = input.getImage()
-        frameFuture onComplete onFrameComplete
-    }
+        img
+      }
+
+      def ready:Boolean = {
+        frameFuture.isCompleted
+      }
+    })
   }
 
   class ElementOutputSplit(val element:Element, val index:Int) {
