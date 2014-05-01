@@ -11,7 +11,6 @@ import com.jme3.math.ColorRGBA
 import com.jme3.material.RenderState.BlendMode
 import com.jme3.renderer.queue.RenderQueue.Bucket
 
-
 /**
  * Created by matthew on 4/26/14.
  */

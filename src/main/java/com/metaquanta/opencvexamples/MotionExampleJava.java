@@ -107,7 +107,6 @@ public class MotionExampleJava {
                     Math.round(center.x + magnitude * Math.cos(angle * Math.PI / 180)),
                     Math.round(center.y - magnitude * Math.sin(angle * Math.PI / 180))), color, 3, LINE_AA, 0);
         }
-        //System.out.println("Created Frame " + dst);
         return dst;
     }
 }

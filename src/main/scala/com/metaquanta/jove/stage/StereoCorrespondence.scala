@@ -8,7 +8,7 @@ import org.opencv.imgproc.Imgproc
  * Created by matthew on 4/26/14.
  */
 class StereoCorrespondence extends Stage {
-  val SGBM = new StereoBM(StereoBM.BASIC_PRESET, 0, 21)
+  val BM = new StereoBM(StereoBM.BASIC_PRESET, 0, 21)
   def getFrame(ins:List[Mat]):List[Mat] = {
     val left = new Mat()
     val right = new Mat()
@@ -19,7 +19,7 @@ class StereoCorrespondence extends Stage {
     Imgproc.cvtColor(ins(1), right, 7)
 
     val depthmap = new Mat()
-    SGBM.compute(left,right,depthmap)
+    BM.compute(left,right,depthmap)
 
     // OMG! The HORROR continues...
     val t = new Mat()

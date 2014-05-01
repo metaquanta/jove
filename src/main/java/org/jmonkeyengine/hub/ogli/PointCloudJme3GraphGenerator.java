@@ -15,6 +15,7 @@ import com.jme3.scene.Node;
  * Licensing: Use at will and "As is", credits would be nice, but aren't necessary...
  * 
  * @author Ogli
+ * From: http://hub.jmonkeyengine.org/forum/topic/how-to-create-a-mesh-from-cloud-points/
  */
 public interface PointCloudJme3GraphGenerator {
 

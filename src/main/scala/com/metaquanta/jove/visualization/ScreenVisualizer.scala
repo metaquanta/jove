@@ -2,8 +2,8 @@ package com.metaquanta.jove.visualization
 
 import com.jme3.scene.shape.Quad
 import com.jme3.scene.Geometry
-import com.jme3.texture.{Texture2D}
-import com.metaquanta.jove.{JME3Application}
+import com.jme3.texture.Texture2D
+import com.metaquanta.jove.JME3Application
 import com.metaquanta.jove.position.Position
 
 /**

@@ -1,8 +1,6 @@
 package com.metaquanta.jove.visualization
 
-import com.jme3.texture.Image
 import com.jme3.material.Material
-import com.jme3.scene.Geometry
 import com.jme3.scene.Node
 import com.metaquanta.jove.JME3Application
 

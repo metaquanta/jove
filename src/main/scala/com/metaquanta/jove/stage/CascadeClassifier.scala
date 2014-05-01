@@ -2,14 +2,15 @@ package com.metaquanta.jove.stage
 
 import org.opencv.core._
 import org.opencv.imgproc.Imgproc
-import org.opencv.objdetect.CascadeClassifier
+import org.opencv.objdetect
 
 /**
  * Created by matthew on 4/28/14.
  */
-class FaceDetector  extends Stage {
-  val faceCascade = new CascadeClassifier()
-  println("CascadeClassifier.load(haarcascade_frontalface): " + faceCascade.load("src/main/resources/haarcascades/haarcascade_frontalface_alt.xml"))
+abstract class CascadeClassifier(cascadeFilename:String) extends Stage {
+  val faceCascade = new objdetect.CascadeClassifier()
+  println("CascadeClassifier.load("+cascadeFilename+"): "
+    + faceCascade.load(cascadeFilename))
 
   def getFrame(ins:List[Mat]):List[Mat] = {
     val input = ins(0)

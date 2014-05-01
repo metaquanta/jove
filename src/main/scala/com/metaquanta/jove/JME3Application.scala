@@ -55,7 +55,7 @@ class JME3Application extends SimpleApplication {
     inputManager.addMapping("Pause",  new KeyTrigger(KeyInput.KEY_P))
     inputManager.addListener(actionListener,"Pause")
     synchronized {
-      println("notifying...")
+      println("...done")
       notify()
     }
   }
