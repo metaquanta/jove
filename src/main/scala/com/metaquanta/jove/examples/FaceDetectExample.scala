@@ -2,8 +2,9 @@ package com.metaquanta.jove.examples
 
 import com.metaquanta.jove._
 import com.jme3.math.Vector3f
-import com.metaquanta.jove.stage.{VideoCapture, FaceDetector, Motion}
+import com.metaquanta.jove.stage._
 import com.metaquanta.jove.visualization.ScreenVisualizer
+import com.metaquanta.jove.position.SpherePositioningHelper
 
 /**
  * Created by matthew on 4/25/14.
@@ -18,51 +19,21 @@ object FaceDetectExample extends App {
     jme3app.wait()
   }
 
-//  val video = new Element(new VideoCapture("/Users/matthew/Desktop/test.mkv"), List())
-//
-////  jme3app.attachScreen(
-////    new ScreenVisualizer(video, 0, jme3app),
-////    new Vector3f(0,0,0))
-//
-//  val split = new Element(new Split(), List(video))
-//
-//  val stereo = new Element(new StereoCorrespondence(),List(split))
-////
-////  jme3app.attachScreen(
-////    new ScreenVisualizer(split, 0, jme3app),
-////    new Vector3f(-2,0,0)
-////  )
-////
-//  jme3app.attachScreen(
-//    new ScreenVisualizer(split, 1, jme3app),
-//    new Vector3f(0,1,0)
-//  )
-//
-//  jme3app.attachScreen(
-//    new ScreenVisualizer(stereo, 0, jme3app),
-//    new Vector3f(0,2,0)
-//  )
-//
-//  jme3app.attachDepthMap(
-//    new DepthMapVisualizer(stereo, 0, jme3app),
-//    new Vector3f(0,0,0)
-//  )
+  val process = new Jove(jme3app)
 
-  //val camera = new PipeElement(new VideoCapture(0), List())
+  val camera = process.addStage(new VideoCapture(0))
 
-//  jme3app.attachVisualizer(
-//    new ScreenVisualizer("Camera", camera, 0, jme3app, new Vector3f(2,0,0))
-//  )
-//
-//  jme3app.attachVisualizer(
-//    new ScreenVisualizer("Motion", new Element(new Motion(), List(camera)), 0, jme3app,
-//      new Vector3f(-2,0,0))
-//  )
-//
-//  jme3app.attachVisualizer(
-//    new ScreenVisualizer("Face Detection", new Element(new FaceDetector(), List(camera)), 0, jme3app,
-//      new Vector3f(-4,0,0))
-//  )
+  process.addVisualizer(
+    new ScreenVisualizer(new SpherePositioningHelper(0,-1), jme3app), camera(0)
+  )
 
+  process.addVisualizer(
+    new ScreenVisualizer(new SpherePositioningHelper(0,0), jme3app),
+    process.addStage(new Motion(), camera(0), "Motion")(0)
+  )
 
+  process.addVisualizer(
+    new ScreenVisualizer(new SpherePositioningHelper(0,1), jme3app),
+    process.addStage(new FaceDetector(), camera(0), "FaceDetector")(0)
+  )
 }
