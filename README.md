@@ -4,7 +4,7 @@ Java Opencv Visualization Engine
 -or-
 Jmonkey OpencV Environment
 -or-
-(recursive) Jove OpencV Experimenter
+(recursively) Jove OpencV Experimenter
 
 opencv visualization in jMonkey
 
