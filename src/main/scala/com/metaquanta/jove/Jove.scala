@@ -8,23 +8,28 @@ import java.nio.ByteBuffer
 import com.metaquanta.jove.visualization.{ImageStream, Visualizer}
 import ExecutionContext.Implicits.global
 import scala.concurrent.duration.Duration
+import com.jme3.font.BitmapText
+import com.jme3.math.ColorRGBA
+import com.jme3.scene.Node
+import scala.compat.Platform
 
 /**
  * Created by matthew on 4/30/14.
  */
 class Jove(app:JME3Application) {
 
-  def addStage(name:String, stage:Stage, inputs:List[ElementOutputSplit]):Stream[ElementOutputSplit] = {
+  def addStage(stage:Stage, inputs:List[ElementOutputSplit], stats:String):Stream[ElementOutputSplit] = {
     // Create an iterator that returns an OutputSplit with the requested index
-    Stream.from(0).map(i => new ElementOutputSplit(new Element(name, stage, inputs), i))
+    val elem = new Element(stage, inputs, stats)
+    Stream.from(0).map(i => new ElementOutputSplit(elem, i))
   }
 
-  def addStage(name:String, stage:Stage, input:ElementOutputSplit):Stream[ElementOutputSplit] = {
-    addStage(name, stage, List(input))
+  def addStage(stage:Stage, input:ElementOutputSplit, stats:String):Stream[ElementOutputSplit] = {
+    addStage(stage, List(input), stats)
   }
 
-  def addStage(name:String, stage:Stage):Stream[ElementOutputSplit] = {
-    addStage(name, stage, List())
+  def addStage(stage:Stage):Stream[ElementOutputSplit] = {
+    addStage(stage, List(), null)
   }
 
   def addVisualizer(visualizer:Visualizer, input:ElementOutputSplit) {
@@ -67,12 +72,23 @@ class Jove(app:JME3Application) {
     }
   }
 
-  class Element(name:String, cap:Stage, in:List[ElementOutputSplit]) {
+  class Element(cap:Stage, in:List[ElementOutputSplit], stats:String) {
     var nextFrame:Future[List[Mat]] = null
+
+    var lastFrame:Long = 0
+    var fps:Float = 0
 
     def getFrame():Future[List[Mat]] = {
       // We always return a future that will return the /next/ frame
       if(nextFrame == null || nextFrame.isCompleted) {
+        // Check the hud stats
+        if(stats != null && !app.getGuiNode.hasChild(hudNode)) {
+          app.attachGuiNodeChild(hudNode)
+        }
+        val thisFrame = Platform.currentTime
+        fps = 1000/(thisFrame-lastFrame)
+        lastFrame = thisFrame
+        if(stats != null) updateHudNode
         val inmats = in.map(x => x.element.getFrame)
         nextFrame = for {
           mats <- Future.sequence(inmats)
@@ -88,6 +104,21 @@ class Jove(app:JME3Application) {
         image <- future(mats.map(x => mat2Image(x)))
       } yield (image)
     }
+
+    lazy val hudText = new BitmapText(app.getFont, false)
+
+    def hudNode:Node = {
+      hudText.setSize(app.getFont.getCharSet.getRenderedSize)
+      hudText.setColor(ColorRGBA.Green)
+      updateHudNode
+      hudText
+    }
+
+    def updateHudNode {
+      hudText.setText(stats + " fps:" + fps)
+    }
+
+
 
     def mat2Image(mat:Mat):Image = {
       // OpenCV mats are in reverse order of what jME3 expects

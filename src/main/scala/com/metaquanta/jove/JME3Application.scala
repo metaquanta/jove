@@ -3,7 +3,7 @@ package com.metaquanta.jove
 import com.jme3.app.SimpleApplication
 import com.jme3.math.Vector3f
 import com.jme3.scene.{CameraNode, Node}
-import com.metaquanta.jove.visualization.{VisualizationNode, DepthMapVisualizer, ScreenVisualizer}
+import com.metaquanta.jove.visualization.{VisualizerNode, DepthMapVisualizer, ScreenVisualizer}
 
 /**
  * Created by matthew on 4/25/14.
@@ -11,7 +11,7 @@ import com.metaquanta.jove.visualization.{VisualizationNode, DepthMapVisualizer,
 class JME3Application extends SimpleApplication {
   start()
 
-  var visualizers = List[VisualizationNode]()
+  var visualizers = List[VisualizerNode]()
 
   def simpleInitApp() {
     getCamera.setLocation(new Vector3f(0, 0, 0))
@@ -31,7 +31,7 @@ class JME3Application extends SimpleApplication {
     visualizers.foreach(s => s.update(tpf))
   }
 
-  def attachVisualizer(v:VisualizationNode) {
+  def attachVisualizer(v:VisualizerNode) {
     // This gets called outside jme's thread. We have to attach on update.
     //rootNode.attachChild(v)
     visualizers = visualizers:+v

@@ -83,7 +83,7 @@ public class RawPointCloudGraphGenerator extends
 		Geometry g = new Geometry("Point Cloud", m);
         g.setShadowMode(ShadowMode.Off);
         //g.setQueueBucket(Bucket.Opaque);
-        g.setQueueBucket(Bucket.Translucent); //I don't know why, but my cloud was always behind
+        g.setQueueBucket(Bucket.Translucent); //I don't know why, but my cloud was always behind -matthew
 
         g.setMaterial(mat);
 		g.updateModelBound();

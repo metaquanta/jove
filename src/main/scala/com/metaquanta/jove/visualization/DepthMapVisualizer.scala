@@ -11,7 +11,7 @@ import com.metaquanta.jove.position.Position
  * Created by matthew on 4/26/14.
  */
 class DepthMapVisualizer(pos:Position, app:JME3Application)
-  extends VisualizationNode(app) with Visualizer {
+  extends VisualizerNode(app) with Visualizer {
 
   var box = new Node()
   attachChild(box)

@@ -9,7 +9,7 @@ import com.metaquanta.jove.JME3Application
 /**
  * Created by matthew on 4/30/14.
  */
-abstract class VisualizationNode(app:JME3Application) extends Node {
+abstract class VisualizerNode(app:JME3Application) extends Node {
   var imageStream:ImageStream = null
 
   app.attachVisualizer(this)

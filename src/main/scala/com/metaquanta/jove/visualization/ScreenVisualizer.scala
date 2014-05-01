@@ -9,7 +9,7 @@ import com.metaquanta.jove.position.Position
 /**
  * Created by matthew on 4/25/14.
  */
-class ScreenVisualizer(pos:Position, app:JME3Application) extends VisualizationNode(app) with Visualizer {
+class ScreenVisualizer(pos:Position, app:JME3Application) extends VisualizerNode(app) with Visualizer {
 
   var box:Geometry = null
 

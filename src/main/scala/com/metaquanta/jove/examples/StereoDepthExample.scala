@@ -1,7 +1,7 @@
 package com.metaquanta.jove.examples
 
 import com.metaquanta.jove.{Jove, JME3Application}
-import com.metaquanta.jove.visualization.{DepthMapVisualizer, ScreenVisualizer}
+import com.metaquanta.jove.visualization.{Visualizer, DepthMapVisualizer, ScreenVisualizer}
 import com.metaquanta.jove.stage.{VideoCapture, StereoCorrespondence, Split}
 import com.metaquanta.jove.position.SpherePositioningHelper
 
@@ -21,11 +21,15 @@ object StereoDepthExample extends App {
 
   val process = new Jove(jme3app)
 
-  val video = process.addStage("video", new VideoCapture("/Users/matthew/Desktop/test.mkv"))
+  val video = process.addStage(
+    new VideoCapture("/Users/matthew/Desktop/test.mkv")
+  )
 
-  val split = process.addStage("splitter", new Split(), video(0))
+  val split = process.addStage(new Split(), video(0), "Split")
 
-  val stereo = process.addStage("depthMap", new StereoCorrespondence(), List(split(0), split(1)))
+  val stereo = process.addStage(
+    new StereoCorrespondence(), List(split(0), split(1)), "DepthMap"
+  )
 
   process.addVisualizer(
     new ScreenVisualizer(new SpherePositioningHelper(0,-1), jme3app), video(0)
@@ -44,7 +48,8 @@ object StereoDepthExample extends App {
   )
 
   process.addVisualizer(
-    new DepthMapVisualizer(new SpherePositioningHelper(0,0), jme3app), stereo(0)
+    new DepthMapVisualizer(new SpherePositioningHelper(0,0), jme3app),
+    stereo(0)
   )
 
   process.addVisualizer(
