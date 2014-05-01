@@ -86,7 +86,7 @@ class Jove(app:JME3Application) {
           app.attachGuiNodeChild(hudNode)
         }
         val thisFrame = Platform.currentTime
-        fps = 1000/(thisFrame-lastFrame)
+        fps = 1000f/(thisFrame-lastFrame).toFloat
         lastFrame = thisFrame
         if(stats != null) updateHudNode
         val inmats = in.map(x => x.element.getFrame)

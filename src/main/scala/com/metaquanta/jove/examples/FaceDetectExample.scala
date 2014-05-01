@@ -28,12 +28,22 @@ object FaceDetectExample extends App {
   )
 
   process.addVisualizer(
-    new ScreenVisualizer(new SpherePositioningHelper(0,0), jme3app),
+    new ScreenVisualizer(new SpherePositioningHelper(0,1), jme3app),
     process.addStage(new Motion(), camera(0), "Motion")(0)
   )
 
   process.addVisualizer(
-    new ScreenVisualizer(new SpherePositioningHelper(0,1), jme3app),
+    new ScreenVisualizer(new SpherePositioningHelper(-2,0), jme3app),
     process.addStage(new FaceDetector(), camera(0), "FaceDetector")(0)
+  )
+
+  process.addVisualizer(
+    new ScreenVisualizer(new SpherePositioningHelper(0,0), jme3app),
+    process.addStage(new FaceDetector2(), camera(0), "FaceDetector2")(0)
+  )
+
+  process.addVisualizer(
+    new ScreenVisualizer(new SpherePositioningHelper(2,0), jme3app),
+    process.addStage(new HeadDetector(), camera(0), "HeadDetector")(0)
   )
 }
