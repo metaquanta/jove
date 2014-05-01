@@ -5,6 +5,8 @@ import com.jme3.math.Vector3f
 import com.metaquanta.jove.stage._
 import com.metaquanta.jove.visualization.ScreenVisualizer
 import com.metaquanta.jove.position.SpherePositioningHelper
+import com.metaquanta.opencvexamples.MotionExampleJava
+import org.opencv.core.Mat
 
 /**
  * Created by matthew on 4/25/14.
@@ -29,7 +31,11 @@ object FaceDetectExample extends App {
 
   process.addVisualizer(
     new ScreenVisualizer(new SpherePositioningHelper(0,1), jme3app),
-    process.addStage(new Motion(), camera(0), "Motion")(0)
+    process.addStage(new MotionExampleJava() with Stage {
+      def getFrame(in:List[Mat]):List[Mat] = {
+        List(update_mhi(in.head))
+      }
+    }, camera(0), "Motion")(0)
   )
 
   process.addVisualizer(
