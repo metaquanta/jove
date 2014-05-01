@@ -22,6 +22,8 @@ class VideoCapture extends highgui.VideoCapture with Stage {
   def getFrame(in:List[Mat]):List[Mat] = {
     val f:Mat = new Mat
     read(f)
+
+    // This loops the video (when relevant)
     if(f.empty) {
       set(1, 0) //CV_CAP_PROP_POS_FRAMES=1
       read(f)
