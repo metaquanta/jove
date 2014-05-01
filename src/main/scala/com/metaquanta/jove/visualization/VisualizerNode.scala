@@ -12,6 +12,8 @@ import com.metaquanta.jove.JME3Application
 abstract class VisualizerNode(app:JME3Application) extends Node {
   var imageStream:ImageStream = null
 
+  var paused:Boolean = false
+
   app.attachVisualizer(this)
 
   def setImageStream(img:ImageStream) = {
@@ -22,5 +24,9 @@ abstract class VisualizerNode(app:JME3Application) extends Node {
     "Common/MatDefs/Misc/Unshaded.j3md")
 
   def update(tpf:Float)
+
+  def pause {
+    paused = !paused
+  }
 
 }

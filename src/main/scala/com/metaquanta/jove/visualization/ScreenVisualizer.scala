@@ -14,7 +14,7 @@ class ScreenVisualizer(pos:Position, app:JME3Application) extends VisualizerNode
   var box:Geometry = null
 
   def update(tpf:Float) {
-    if (imageStream != null && imageStream.ready) {
+    if (!paused && imageStream != null && imageStream.ready) {
       val image = imageStream.next
       if (box == null) {
         val (width, height) = (image.getWidth, image.getHeight)
@@ -24,7 +24,7 @@ class ScreenVisualizer(pos:Position, app:JME3Application) extends VisualizerNode
         attachChild(box)
         setLocalTranslation(pos.position(width.toFloat/height.toFloat, 1f))
         setLocalRotation(pos.orientation(width.toFloat/height.toFloat, 1f))
-        app.getRootNode.attachChild(this)
+        //app.getRootNode.attachChild(this)
       }
       val ftex: Texture2D = new Texture2D(image)
       mat.setTexture("ColorMap", ftex)

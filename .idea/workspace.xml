@@ -23,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JME3Application.scala" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="JME3Application.scala" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/JME3Application.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="91" max-vertical-offset="648">
-              <caret line="44" column="17" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.2889734" vertical-offset="412" max-vertical-offset="1224">
+              <caret line="47" column="14" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
               <folding>
                 <element signature="e#29#66#0" expanded="true" />
               </folding>
@@ -38,8 +38,8 @@
       <file leaf-file-name="VisualizerNode.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/visualization/VisualizerNode.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="384">
-              <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="456">
+              <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
               <folding>
                 <element signature="e#43#72#0" expanded="true" />
               </folding>
@@ -47,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Jove.scala" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Jove.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/Jove.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8143712" vertical-offset="996" max-vertical-offset="1752">
-              <caret line="117" column="43" selection-start-line="117" selection-start-column="43" selection-end-line="117" selection-end-column="43" />
+            <state vertical-scroll-proportion="-9.12" vertical-offset="780" max-vertical-offset="1752">
+              <caret line="84" column="63" selection-start-line="84" selection-start-column="63" selection-end-line="84" selection-end-column="63" />
               <folding>
                 <element signature="e#29#67#0" expanded="true" />
               </folding>
@@ -62,8 +62,8 @@
       <file leaf-file-name="StereoDepthExample.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/examples/StereoDepthExample.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="186" max-vertical-offset="804">
-              <caret line="30" column="58" selection-start-line="30" selection-start-column="58" selection-end-line="30" selection-end-column="58" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="254" max-vertical-offset="804">
+              <caret line="56" column="2" selection-start-line="54" selection-start-column="2" selection-end-line="56" selection-end-column="2" />
               <folding>
                 <element signature="e#38#88#0" expanded="true" />
               </folding>
@@ -115,7 +115,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/visualization/ScreenVisualizer.scala">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="468">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
               <folding>
                 <element signature="e#43#75#0" expanded="true" />
               </folding>
@@ -126,10 +126,10 @@
       <file leaf-file-name="DepthMapVisualizer.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/visualization/DepthMapVisualizer.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
-              <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="233" max-vertical-offset="1068">
+              <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
               <folding>
-                <element signature="e#43#69#0" expanded="true" />
+                <element signature="e#43#81#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -145,7 +145,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/scala/VisualizationNode.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/VisualizationNode.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/Main.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/VideoCapturePipe.scala" />
@@ -190,12 +189,13 @@
         <option value="$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/visualization/Visualizer.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/visualization/ImageStream.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/visualization/VisualizationNode.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/org/jmonkeyengine/hub/ogli/RawPointCloudGraphGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/Jove.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/examples/StereoDepthExample.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/visualization/VisualizerNode.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/visualization/ScreenVisualizer.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/visualization/DepthMapVisualizer.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/JME3Application.scala" />
-        <option value="$PROJECT_DIR$/src/main/java/org/jmonkeyengine/hub/ogli/RawPointCloudGraphGenerator.java" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/examples/StereoDepthExample.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/Jove.scala" />
       </list>
     </option>
   </component>
@@ -720,7 +720,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22265625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16477273" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16477273" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1059,36 +1059,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/visualization/ScreenVisualizer.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="468">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding>
-            <element signature="e#43#75#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/visualization/DepthMapVisualizer.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
-          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-          <folding>
-            <element signature="e#43#69#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/visualization/VisualizerNode.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="384">
-          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
-          <folding>
-            <element signature="e#43#72#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/visualization/Visualizer.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="192">
@@ -1121,32 +1091,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/JME3Application.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/Jove.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="91" max-vertical-offset="648">
-          <caret line="44" column="17" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
+        <state vertical-scroll-proportion="-9.12" vertical-offset="780" max-vertical-offset="1752">
+          <caret line="84" column="63" selection-start-line="84" selection-start-column="63" selection-end-line="84" selection-end-column="63" />
           <folding>
-            <element signature="e#29#66#0" expanded="true" />
+            <element signature="e#29#67#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/examples/StereoDepthExample.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="804">
-          <caret line="30" column="58" selection-start-line="30" selection-start-column="58" selection-end-line="30" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="254" max-vertical-offset="804">
+          <caret line="56" column="2" selection-start-line="54" selection-start-column="2" selection-end-line="56" selection-end-column="2" />
           <folding>
             <element signature="e#38#88#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/Jove.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/visualization/VisualizerNode.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8143712" vertical-offset="996" max-vertical-offset="1752">
-          <caret line="117" column="43" selection-start-line="117" selection-start-column="43" selection-end-line="117" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="456">
+          <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
           <folding>
-            <element signature="e#29#67#0" expanded="true" />
+            <element signature="e#43#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/visualization/ScreenVisualizer.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="468">
+          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+          <folding>
+            <element signature="e#43#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/visualization/DepthMapVisualizer.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="233" max-vertical-offset="1068">
+          <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+          <folding>
+            <element signature="e#43#81#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/metaquanta/jove/JME3Application.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2889734" vertical-offset="412" max-vertical-offset="1224">
+          <caret line="47" column="14" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
+          <folding>
+            <element signature="e#29#66#0" expanded="true" />
           </folding>
         </state>
       </provider>

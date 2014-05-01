@@ -82,7 +82,7 @@ class Jove(app:JME3Application) {
       // We always return a future that will return the /next/ frame
       if(nextFrame == null || nextFrame.isCompleted) {
         // Check the hud stats
-        if(stats != null && !app.getGuiNode.hasChild(hudNode)) {
+        if(stats != null && app.guiNodes.indexOf(hudNode) == -1) {
           app.attachGuiNodeChild(hudNode)
         }
         val thisFrame = Platform.currentTime
