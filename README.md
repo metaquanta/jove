@@ -11,3 +11,7 @@ opencv visualization in jMonkey
 Process video streams, parallelized, with ease.
 
 See the (Scala) examples in com.metaquanta.jove.examples for usage
+
+To run the examples:
+
+$ sbt run
