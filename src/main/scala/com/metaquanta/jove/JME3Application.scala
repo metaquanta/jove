@@ -12,6 +12,8 @@ import com.jme3.collision.CollisionResults
  * Created by matthew on 4/25/14.
  */
 class JME3Application extends SimpleApplication {
+  // This is an example jME3 app for use with jove.
+  // todo: move the necessary interface to a trait.
   start()
 
   var visualizers = List[VisualizerNode]()
@@ -19,10 +21,11 @@ class JME3Application extends SimpleApplication {
 
   def simpleInitApp() {
     initCam
+    // Set up the picker for pausing the visualizers
     val actionListener = new ActionListener() {
       def onAction(name:String, keyPressed:Boolean, tpf:Float) {
-        println("onAction:" + name)
         if (name.equals("ResetCam") && !keyPressed) {
+          // Bring us back to <0,0,0> so we are looking at all the screens
           initCam
         }
         if (name.equals("Pause") && !keyPressed) {
@@ -33,19 +36,12 @@ class JME3Application extends SimpleApplication {
           val ray = new Ray(cam.getLocation(), cam.getDirection())
           // 3. Collect intersections between Ray and Shootables in results list.
           rootNode.collideWith(ray, results)
-          // 4. Print results.
-          System.out.println("----- Collisions? " + results.size() + "-----")
           for(i <- 0 until results.size()) {
-            // For each hit, we know distance, impact point, name of geometry.
-//            val dist = results.getCollision(i).getDistance();
-//            val pt = results.getCollision(i).getContactPoint();
-//            val hit = results.getCollision(i).getGeometry().getName();
             val target = results.getCollision(i).getGeometry.getParent
             target match {
+              // If we picked a visualizer, pause it
               case target:VisualizerNode => target.pause
             }
-            System.out.println("* Collision #" + i);
-            //System.out.println("  You shot " + hit + " at " + pt + ", " + dist + " wu away.");
           }
         }
       }
@@ -54,6 +50,7 @@ class JME3Application extends SimpleApplication {
     inputManager.addListener(actionListener,"ResetCam")
     inputManager.addMapping("Pause",  new KeyTrigger(KeyInput.KEY_P))
     inputManager.addListener(actionListener,"Pause")
+
     synchronized {
       println("...done")
       notify()
@@ -66,6 +63,8 @@ class JME3Application extends SimpleApplication {
   }
 
   override def simpleUpdate(tpf:Float) {
+    // The scene graph can only be updated in this thread.
+    // All attachChild()s belong here
     visualizers.foreach(s => {
       if(!rootNode.hasChild(s)) {
         rootNode.attachChild(s)
@@ -73,6 +72,7 @@ class JME3Application extends SimpleApplication {
     })
     guiNodes.foreach(n => {
       if(!guiNode.hasChild(n)) {
+        // todo: This should be abstracted
         n.setLocalTranslation(0, settings.getHeight() - 20*guiNodesIndex, 0)
         guiNodesIndex += 1
         guiNode.attachChild(n)
@@ -82,13 +82,12 @@ class JME3Application extends SimpleApplication {
   }
 
   def attachVisualizer(v:VisualizerNode) {
-    // This gets called outside jme's thread. We have to attach on update.
-    //rootNode.attachChild(v)
     visualizers = visualizers:+v
   }
 
   def getFont = {guiFont}
 
+  // todo: We should not maintain an index
   var guiNodesIndex = 0
   def attachGuiNodeChild(n:Node) {
     guiNodes = guiNodes:+n

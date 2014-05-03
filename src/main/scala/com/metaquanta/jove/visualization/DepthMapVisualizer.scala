@@ -16,14 +16,16 @@ import com.jme3.renderer.queue.RenderQueue.Bucket
  */
 class DepthMapVisualizer(pos:Position, app:JME3Application)
   extends VisualizerNode(app) with Visualizer {
+  // Render a gray scale depth map as a point cloud.
 
   var box = new Node()
   attachChild(box)
-  var invisibleHitScreen:Geometry = null
 
+  var invisibleHitScreen:Geometry = null
   val invisible = new Material(app.getAssetManager(),
     "Common/MatDefs/Misc/Unshaded.j3md")
   // BlackNoAlpha is really "Invisible" and Black is really "BlackOpaque"
+  // We are going to render an invisible Quad for mouse-picking
   invisible.setColor("Color", ColorRGBA.BlackNoAlpha)
   invisible.getAdditionalRenderState().setBlendMode(BlendMode.Alpha)
 
@@ -31,26 +33,31 @@ class DepthMapVisualizer(pos:Position, app:JME3Application)
     if (!paused && imageStream != null && imageStream.ready) {
       val image = imageStream.next
       if (invisibleHitScreen == null){
-        println("Creating HitScreen!")
+        // Set up the picking target
         val (width, height) = (image.getWidth, image.getHeight)
-        invisibleHitScreen = new Geometry("Quad", new Quad(width.toFloat/height.toFloat, 1f))
+        invisibleHitScreen =
+          new Geometry("Quad", new Quad(width.toFloat/height.toFloat, 1f))
         invisibleHitScreen.setMaterial(invisible)
         invisibleHitScreen.setQueueBucket(Bucket.Transparent)
-
         attachChild(invisibleHitScreen)
-        //app.getRootNode.attachChild(this)
       }
+
       val (points, colors) = generatePoints(image)
       val generator = new RawPointCloudGraphGenerator(app.getAssetManager)
-      detachChild(box)
-      val n = new Node
-      setLocalTranslation(pos.position(image.getWidth.toFloat / image.getHeight.toFloat, 1f))
-      setLocalRotation(pos.orientation(image.getWidth.toFloat / image.getHeight.toFloat, 1f))
 
-      n.attachChild(generator.generatePointCloudGraph(points, colors))
+      val cloud = new Node
+      setLocalTranslation(
+        pos.position(image.getWidth.toFloat / image.getHeight.toFloat, 1f))
+      setLocalRotation(
+        pos.orientation(image.getWidth.toFloat / image.getHeight.toFloat, 1f))
+
+      cloud.attachChild(generator.generatePointCloudGraph(points, colors))
+
+      // Maybe this reduces flickering
       detachChild(box)
-      attachChild(n)
-      box = n
+      attachChild(cloud)
+
+      box = cloud
     }
   }
 

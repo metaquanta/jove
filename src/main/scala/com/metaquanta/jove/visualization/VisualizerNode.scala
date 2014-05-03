@@ -8,6 +8,8 @@ import com.metaquanta.jove.JME3Application
  * Created by matthew on 4/30/14.
  */
 abstract class VisualizerNode(app:JME3Application) extends Node {
+  // todo: determine the responsibilities of this and "Visualizer"
+  // Ultimately related to issue #2
   var imageStream:ImageStream = null
 
   var paused:Boolean = false

@@ -7,7 +7,7 @@ import org.opencv.highgui
  * Created by matthew on 4/26/14.
  */
 class VideoCapture extends highgui.VideoCapture with Stage {
-  // A simple jove interface to opencv's VideoCapture
+  // A simple jove interface to OpenCV's VideoCapture
 
   // emulate java constructors
   def this(n:Int) {

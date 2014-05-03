@@ -9,22 +9,23 @@ import com.metaquanta.jove.position.Position
 /**
  * Created by matthew on 4/25/14.
  */
-class ScreenVisualizer(pos:Position, app:JME3Application) extends VisualizerNode(app) with Visualizer {
+class ScreenVisualizer(pos:Position, app:JME3Application) 
+  extends VisualizerNode(app) with Visualizer {
 
-  var box:Geometry = null
+  var screen:Geometry = null
 
   def update(tpf:Float) {
     if (!paused && imageStream != null && imageStream.ready) {
       val image = imageStream.next
-      if (box == null) {
+      if (screen == null) {
         val (width, height) = (image.getWidth, image.getHeight)
-        box = new Geometry("Quad", new Quad(width.toFloat/height.toFloat, 1f))
-        box.setMaterial(mat)
-
-        attachChild(box)
+        screen = new Geometry("Quad",
+          new Quad(width.toFloat/height.toFloat, 1f)
+        )
+        screen.setMaterial(mat)
         setLocalTranslation(pos.position(width.toFloat/height.toFloat, 1f))
         setLocalRotation(pos.orientation(width.toFloat/height.toFloat, 1f))
-        //app.getRootNode.attachChild(this)
+        attachChild(screen)
       }
       val ftex: Texture2D = new Texture2D(image)
       mat.setTexture("ColorMap", ftex)

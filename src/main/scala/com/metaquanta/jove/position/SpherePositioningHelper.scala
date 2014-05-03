@@ -12,7 +12,7 @@ class SpherePositioningHelper(col:Int, row:Int) extends Position {
 
   // This is complicated (just excessive composition of simple trig): Position
   // Quads on a sphere, with "rows" rows and "cols" columns.
-  // Moving the viewpoint around from the center of the sphere lets any Quad
+  // Moving the viewport around from the center of the sphere lets any Quad
   // seem to face you
   def position(w:Float, h:Float):Vector3f = {
     FastMath.sphericalToCartesian(

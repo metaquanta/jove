@@ -1,4 +1,4 @@
-name := "openCVJME3Test"
+name := "jove"
 
-version := "1.0"
+version := "0.1"
     

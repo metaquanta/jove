@@ -17,14 +17,19 @@ import scala.compat.Platform
  * Created by matthew on 4/30/14.
  */
 class Jove(app:JME3Application) {
+  // This is where all the serious concurrency happens. Treat with care
 
-  def addStage(stage:Stage, inputs:List[ElementOutputSplit], stats:String):Stream[ElementOutputSplit] = {
+  def addStage(stage:Stage,
+               inputs:List[ElementOutputSplit],
+               stats:String):Stream[ElementOutputSplit] = {
     // Create an iterator that returns an OutputSplit with the requested index
     val elem = new Element(stage, inputs, stats)
     Stream.from(0).map(i => new ElementOutputSplit(elem, i))
   }
 
-  def addStage(stage:Stage, input:ElementOutputSplit, stats:String):Stream[ElementOutputSplit] = {
+  def addStage(stage:Stage,
+               input:ElementOutputSplit,
+               stats:String):Stream[ElementOutputSplit] = {
     addStage(stage, List(input), stats)
   }
 

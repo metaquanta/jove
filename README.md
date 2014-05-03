@@ -6,7 +6,7 @@ Jmonkey OpencV Environment
 -or-
 (recursively) Jove OpencV Experimenter
 
-opencv visualization in jMonkey
+OpenCV visualization in jMonkey
 
 Process video streams, parallelized, with ease.
 
@@ -16,7 +16,7 @@ To run the examples:
 
 $ sbt run
 
-The following VM options are suggests:
+The following VM options are suggested:
 
 JAVA_OPTS="-XX:+CMSClassUnloadingEnabled -Xms512m -Xmx512m -XX:MaxDirectMemorySize=2048M -XX:MaxPermSize=384m -XX:ReservedCodeCacheSize=192m -Dfile.encoding=UTF8"
 
