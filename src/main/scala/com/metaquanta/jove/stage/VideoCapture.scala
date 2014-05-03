@@ -14,6 +14,7 @@ class VideoCapture extends highgui.VideoCapture with Stage {
     this()
     open(n)
   }
+
   def this(f:String) {
     this()
     open(f)

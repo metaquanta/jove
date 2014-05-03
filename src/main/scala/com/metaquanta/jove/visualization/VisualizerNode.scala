@@ -17,11 +17,12 @@ abstract class VisualizerNode(app:JME3Application) extends Node {
   app.attachVisualizer(this)
 
   def setImageStream(img:ImageStream) = {
-    imageStream=img
+    imageStream = img
   }
 
   val mat = new Material(app.getAssetManager(),
-    "Common/MatDefs/Misc/Unshaded.j3md")
+    "Common/MatDefs/Misc/Unshaded.j3md"
+  )
 
   def update(tpf:Float)
 

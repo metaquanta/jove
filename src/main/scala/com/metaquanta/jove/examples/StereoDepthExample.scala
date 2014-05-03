@@ -20,7 +20,6 @@ object StereoDepthExample extends App {
   }
   // End boilerplate
 
-
   val process = new Jove(jme3app)
 
   val video = process.addStage(
@@ -34,31 +33,29 @@ object StereoDepthExample extends App {
   )
 
   process.addVisualizer(
-    new ScreenVisualizer(new SpherePositioningHelper(0,-1), jme3app), video(0)
+    new ScreenVisualizer(new SpherePositioningHelper(0, -1), jme3app), video(0)
   )
 
   process.addVisualizer(
-    new ScreenVisualizer(new SpherePositioningHelper(-1,0), jme3app), split(0)
+    new ScreenVisualizer(new SpherePositioningHelper(-1, 0), jme3app), split(0)
   )
 
   process.addVisualizer(
-    new ScreenVisualizer(new SpherePositioningHelper(1,0), jme3app), split(1)
+    new ScreenVisualizer(new SpherePositioningHelper(1, 0), jme3app), split(1)
   )
 
   process.addVisualizer(
-    new ScreenVisualizer(new SpherePositioningHelper(0,1), jme3app), stereo(0)
+    new ScreenVisualizer(new SpherePositioningHelper(0, 1), jme3app), stereo(0)
   )
 
   process.addVisualizer(
-    new DepthMapVisualizer(new SpherePositioningHelper(0,0), jme3app),
+    new DepthMapVisualizer(new SpherePositioningHelper(0, 0), jme3app),
     stereo(0)
   )
 
   // Render one of the splits behind the 3D depth map ('cause it's pretty)
   process.addVisualizer(
-    new ScreenVisualizer(new SpherePositioningHelper(0,0), jme3app), split(0)
+    new ScreenVisualizer(new SpherePositioningHelper(0, 0), jme3app), split(0)
   )
-
-
 
 }

@@ -7,5 +7,6 @@ import com.jme3.math.{Quaternion, Vector3f}
  */
 trait Position {
   def position(w:Float, h:Float):Vector3f
+
   def orientation(w:Float, h:Float):Quaternion
 }

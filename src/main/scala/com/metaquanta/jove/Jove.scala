@@ -21,7 +21,8 @@ class Jove(app:JME3Application) {
 
   def addStage(stage:Stage,
                inputs:List[ElementOutputSplit],
-               stats:String):Stream[ElementOutputSplit] = {
+               stats:String
+              ):Stream[ElementOutputSplit] = {
     // Create an iterator that returns an OutputSplit with the requested index
     val elem = new Element(stage, inputs, stats)
     Stream.from(0).map(i => new ElementOutputSplit(elem, i))
@@ -29,7 +30,8 @@ class Jove(app:JME3Application) {
 
   def addStage(stage:Stage,
                input:ElementOutputSplit,
-               stats:String):Stream[ElementOutputSplit] = {
+               stats:String
+              ):Stream[ElementOutputSplit] = {
     addStage(stage, List(input), stats)
   }
 
@@ -91,7 +93,7 @@ class Jove(app:JME3Application) {
           app.attachGuiNodeChild(hudNode)
         }
         val thisFrame = Platform.currentTime
-        fps = 1000f/(thisFrame-lastFrame).toFloat
+        fps = 1000f / (thisFrame - lastFrame).toFloat
         lastFrame = thisFrame
         if(stats != null) updateHudNode
         val inmats = in.map(x => x.element.getFrame)
@@ -123,21 +125,20 @@ class Jove(app:JME3Application) {
       hudText.setText(stats + " fps:" + fps)
     }
 
-
-
     def mat2Image(mat:Mat):Image = {
       // OpenCV mats are in reverse order of what jME3 expects
       val flipdst = new Mat
       Core.flip(mat, flipdst, 0)
 
       // Perform the voodoo magic
-      val len: Int = flipdst.width * flipdst.height * flipdst.channels()
-      val byteBuff: ByteBuffer = ByteBuffer.allocateDirect(len)
-      val bytes: Array[Byte] = new Array[Byte](len)
+      val len:Int = flipdst.width * flipdst.height * flipdst.channels()
+      val byteBuff:ByteBuffer = ByteBuffer.allocateDirect(len)
+      val bytes:Array[Byte] = new Array[Byte](len)
       flipdst.get(0, 0, bytes)
       new Image(Image.Format.BGR8,
         flipdst.width, flipdst.height,
-        byteBuff.put(bytes))
+        byteBuff.put(bytes)
+      )
     }
 
   }

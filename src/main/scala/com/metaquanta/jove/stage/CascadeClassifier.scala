@@ -9,8 +9,9 @@ import org.opencv.objdetect
  */
 abstract class CascadeClassifier(cascadeFilename:String) extends Stage {
   val faceCascade = new objdetect.CascadeClassifier()
-  println("CascadeClassifier.load("+cascadeFilename+"): "
-    + faceCascade.load(cascadeFilename))
+  println("CascadeClassifier.load(" + cascadeFilename + "): "
+    + faceCascade.load(cascadeFilename)
+  )
 
   def getFrame(ins:List[Mat]):List[Mat] = {
     val input = ins(0)
@@ -18,18 +19,22 @@ abstract class CascadeClassifier(cascadeFilename:String) extends Stage {
     val inGrey = new Mat()
     // OMG! The HORROR that is Mat type conversions...
     // ...convert to grey scale
-    Imgproc.cvtColor(input, inGrey, 7) //CV_RGB2GRAY    =7
-    Imgproc.equalizeHist( inGrey, inGrey )
+    Imgproc.cvtColor(input, inGrey, 7) // CV_RGB2GRAY = 7
+    Imgproc.equalizeHist(inGrey, inGrey)
 
     val faces = new MatOfRect()
-    faceCascade.detectMultiScale( inGrey, faces)//, 1.1, 2, 0|CV_HAAR_SCALE_IMAGE, Size(30, 30) )
+    faceCascade.detectMultiScale(inGrey, faces)
 
     val facesAr = faces.toArray()
 
     if(facesAr.size > 0) {
-      //println("FOUND A FACE!")
-      val center = new Point( facesAr(0).x + facesAr(0).width*0.5, facesAr(0).y + facesAr(0).height*0.5 )
-      Core.ellipse( input, center, new Size( facesAr(0).width*0.5, facesAr(0).height*0.5), 0, 0, 360, new Scalar( 255, 0, 255 ), 4, 8, 0 );
+      val center = new Point(facesAr(0).x + facesAr(0).width * 0.5,
+        facesAr(0).y + facesAr(0).height * 0.5
+      )
+      Core.ellipse(input, center,
+        new Size(facesAr(0).width * 0.5, facesAr(0).height * 0.5), 0, 0, 360,
+        new Scalar(255, 0, 255), 4, 8, 0
+      )
     }
 
     List(input)

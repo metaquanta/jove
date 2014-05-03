@@ -7,5 +7,6 @@ import com.jme3.texture.Image
  */
 trait ImageStream {
   def ready:Boolean
+
   def next:Image
 }

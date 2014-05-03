@@ -14,8 +14,8 @@ class Split extends Stage {
     val height = in.height
     // Output a pair of new ROI Mats
     List(
-      new Mat(in, new Rect(0,0,width/2, height)),
-      new Mat(in, new Rect(width/2,0,width/2, height))
+      new Mat(in, new Rect(0, 0, width / 2, height)),
+      new Mat(in, new Rect(width / 2, 0, width / 2, height))
     )
   }
 }
