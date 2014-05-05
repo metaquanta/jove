@@ -10,7 +10,7 @@ import com.metaquanta.jove.position.SpherePositioningHelper
  */
 object StereoDepthExample extends App {
   // Begin boilerplate
-  print("loading opencv...")
+  print("loading OpenCV...")
   System.loadLibrary("opencv_java248")
   println("...done")
   print("loading JME3...")

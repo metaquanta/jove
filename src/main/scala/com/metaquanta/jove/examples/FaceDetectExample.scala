@@ -12,7 +12,7 @@ import org.opencv.core.Mat
  */
 object FaceDetectExample extends App {
   // Begin boilerplate
-  print("loading opencv...")
+  print("loading OpenCV...")
   System.loadLibrary("opencv_java248")
   println("...done")
   print("loading JME3...")
@@ -30,7 +30,7 @@ object FaceDetectExample extends App {
     new ScreenVisualizer(new SpherePositioningHelper(0, -1), jme3app), camera(0)
   )
 
-  // This is an example of using a pure Java opencv class that is completely
+  // This is an example of using a pure Java OpenCV class that is completely
   // agnostic of jove.
   process.addVisualizer(
     new ScreenVisualizer(new SpherePositioningHelper(0, 1), jme3app),

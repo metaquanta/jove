@@ -25,7 +25,7 @@ abstract class CascadeClassifier(cascadeFilename:String) extends Stage {
     val faces = new MatOfRect()
     faceCascade.detectMultiScale(inGrey, faces)
 
-    val facesAr = faces.toArray()
+    val facesAr = faces.toArray
 
     if(facesAr.size > 0) {
       val center = new Point(facesAr(0).x + facesAr(0).width * 0.5,

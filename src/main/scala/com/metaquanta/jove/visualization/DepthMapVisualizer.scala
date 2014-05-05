@@ -22,13 +22,13 @@ class DepthMapVisualizer(pos:Position, app:JME3Application)
   attachChild(box)
 
   var invisibleHitScreen:Geometry = null
-  val invisible = new Material(app.getAssetManager(),
+  val invisible = new Material(app.getAssetManager,
     "Common/MatDefs/Misc/Unshaded.j3md"
   )
   // BlackNoAlpha is really "Invisible" and Black is really "BlackOpaque"
   // We are going to render an invisible Quad for mouse-picking
   invisible.setColor("Color", ColorRGBA.BlackNoAlpha)
-  invisible.getAdditionalRenderState().setBlendMode(BlendMode.Alpha)
+  invisible.getAdditionalRenderState.setBlendMode(BlendMode.Alpha)
 
   def update(tpf:Float) {
     if(!paused && imageStream != null && imageStream.ready) {
@@ -86,10 +86,10 @@ class DepthMapVisualizer(pos:Position, app:JME3Application)
           result(i * 3 + 2) > .99f) 0f
         else 1f
       }
-      ({
-        i += 1;
+      {
+        i += 1
         i - 1
-      })
+      }
     }
 
     (result, colors)

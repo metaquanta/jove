@@ -20,20 +20,20 @@ class JME3Application extends SimpleApplication {
   var guiNodes = List[Node]()
 
   def simpleInitApp() {
-    initCam
+    initCam()
     // Set up the picker for pausing the visualizers
     val actionListener = new ActionListener() {
       def onAction(name:String, keyPressed:Boolean, tpf:Float) {
         if(name.equals("ResetCam") && !keyPressed) {
           // Bring us back to <0,0,0> so we are looking at all the screens
-          initCam
+          initCam()
         }
         if(name.equals("Pause") && !keyPressed) {
           // From: http://hub.jmonkeyengine.org/wiki/doku.php/jme3:beginner:hello_picking
           // 1. Reset results list.
           val results = new CollisionResults()
           // 2. Aim the ray from cam loc to cam direction.
-          val ray = new Ray(cam.getLocation(), cam.getDirection())
+          val ray = new Ray(cam.getLocation, cam.getDirection)
           // 3. Collect intersections between Ray and Shootables in results
           // list.
           rootNode.collideWith(ray, results)
@@ -58,7 +58,7 @@ class JME3Application extends SimpleApplication {
     }
   }
 
-  def initCam {
+  def initCam() {
     getCamera.setLocation(new Vector3f(0, 0, 0))
     getCamera.lookAt(new Vector3f(1, 0, 0), Vector3f.UNIT_Y)
   }
@@ -74,7 +74,7 @@ class JME3Application extends SimpleApplication {
     guiNodes.foreach(n => {
       if(!guiNode.hasChild(n)) {
         // todo: This should be abstracted
-        n.setLocalTranslation(0, settings.getHeight() - 20 * guiNodesIndex, 0)
+        n.setLocalTranslation(0, settings.getHeight - 20 * guiNodesIndex, 0)
         guiNodesIndex += 1
         guiNode.attachChild(n)
       }

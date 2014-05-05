@@ -20,18 +20,18 @@ class Jove(app:JME3Application) {
   // This is where all the serious concurrency happens. Treat with care
 
   def addStage(stage:Stage,
-               inputs:List[ElementOutputSplit],
-               stats:String
-              ):Stream[ElementOutputSplit] = {
+    inputs:List[ElementOutputSplit],
+    stats:String
+  ):Stream[ElementOutputSplit] = {
     // Create an iterator that returns an OutputSplit with the requested index
     val elem = new Element(stage, inputs, stats)
     Stream.from(0).map(i => new ElementOutputSplit(elem, i))
   }
 
   def addStage(stage:Stage,
-               input:ElementOutputSplit,
-               stats:String
-              ):Stream[ElementOutputSplit] = {
+    input:ElementOutputSplit,
+    stats:String
+  ):Stream[ElementOutputSplit] = {
     addStage(stage, List(input), stats)
   }
 
@@ -44,14 +44,14 @@ class Jove(app:JME3Application) {
   }
 
   class VisualizerElement(visualizer:Visualizer, input:ElementOutputSplit) {
-    var frameFuture:Future[Image] = input.getImage()
+    var frameFuture:Future[Image] = input.getImage
 
     visualizer.setImageStream(new Object with ImageStream {
       def next:Image = {
         Await.ready(frameFuture, Duration.Inf)
         val img:Image = frameFuture.value.get.get
         // start waiting on the next frame
-        frameFuture = input.getImage()
+        frameFuture = input.getImage
         img
       }
 
@@ -62,18 +62,17 @@ class Jove(app:JME3Application) {
   }
 
   class ElementOutputSplit(val element:Element, val index:Int) {
-
     // All these do is pull the desired element out of the list
-    def getImage():Future[Image] = {
+    def getImage:Future[Image] = {
       for {
-        imgs <- element.getImage()
+        imgs <- element.getImage
         img <- future(imgs(index))
       } yield img
     }
 
-    def getFrame():Future[Mat] = {
+    def getFrame:Future[Mat] = {
       for {
-        fs <- element.getFrame()
+        fs <- element.getFrame
         f <- future(fs(index))
       } yield f
     }
@@ -85,31 +84,32 @@ class Jove(app:JME3Application) {
     var lastFrame:Long = 0
     var fps:Float = 0
 
-    def getFrame():Future[List[Mat]] = {
+    def getFrame:Future[List[Mat]] = {
       // We always return a future that will return the /next/ frame
       if(nextFrame == null || nextFrame.isCompleted) {
         // Check the hud stats
+        // todo: this doesn't belong here
         if(stats != null && app.guiNodes.indexOf(hudNode) == -1) {
           app.attachGuiNodeChild(hudNode)
         }
         val thisFrame = Platform.currentTime
         fps = 1000f / (thisFrame - lastFrame).toFloat
         lastFrame = thisFrame
-        if(stats != null) updateHudNode
+        if(stats != null) updateHudNode()
         val inmats = in.map(x => x.element.getFrame)
         nextFrame = for {
           mats <- Future.sequence(inmats)
           f <- future(cap.getFrame(mats.flatten))
         } yield f
       }
-      return nextFrame
+      nextFrame
     }
 
-    def getImage():Future[List[Image]] = {
+    def getImage:Future[List[Image]] = {
       for {
         mats <- getFrame
         image <- future(mats.map(x => mat2Image(x)))
-      } yield (image)
+      } yield image
     }
 
     lazy val hudText = new BitmapText(app.getFont, false)
@@ -117,11 +117,11 @@ class Jove(app:JME3Application) {
     def hudNode:Node = {
       hudText.setSize(app.getFont.getCharSet.getRenderedSize)
       hudText.setColor(ColorRGBA.Green)
-      updateHudNode
+      updateHudNode()
       hudText
     }
 
-    def updateHudNode {
+    def updateHudNode() {
       hudText.setText(stats + " fps:" + fps)
     }
 
@@ -140,7 +140,5 @@ class Jove(app:JME3Application) {
         byteBuff.put(bytes)
       )
     }
-
   }
-
 }

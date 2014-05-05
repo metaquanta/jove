@@ -27,8 +27,8 @@ class ScreenVisualizer(pos:Position, app:JME3Application)
         setLocalRotation(pos.orientation(width.toFloat / height.toFloat, 1f))
         attachChild(screen)
       }
-      val ftex:Texture2D = new Texture2D(image)
-      mat.setTexture("ColorMap", ftex)
+      val tex:Texture2D = new Texture2D(image)
+      mat.setTexture("ColorMap", tex)
     }
   }
 }

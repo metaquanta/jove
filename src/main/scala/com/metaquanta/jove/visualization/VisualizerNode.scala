@@ -20,7 +20,7 @@ abstract class VisualizerNode(app:JME3Application) extends Node {
     imageStream = img
   }
 
-  val mat = new Material(app.getAssetManager(),
+  val mat = new Material(app.getAssetManager,
     "Common/MatDefs/Misc/Unshaded.j3md"
   )
 
