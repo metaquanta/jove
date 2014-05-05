@@ -17,8 +17,6 @@ abstract class CascadeClassifier(cascadeFilename:String) extends Stage {
     val input = ins(0)
 
     val inGrey = new Mat()
-    // OMG! The HORROR that is Mat type conversions...
-    // ...convert to grey scale
     Imgproc.cvtColor(input, inGrey, 7) // CV_RGB2GRAY = 7
     Imgproc.equalizeHist(inGrey, inGrey)
 
